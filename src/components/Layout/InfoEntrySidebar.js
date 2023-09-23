@@ -26,21 +26,29 @@ const InfoEntrySidebar = ({ children, category, setFormId }) => {
     };
   }
   const items = [
-    getItem('All', '99', <DesktopOutlined />),
-    ...((category?.map((element, i) => {
-      return getItem(element.category, element.id, <AppstoreAddOutlined />, [
-        getItem('Add', element.id + 1),
-        getItem('Current Month', element.id + 2),
-        getItem('All', element.id + 3),
-      ]);
-    })) || []),
-    // getItem('User', 'sub1', <UserOutlined />, [
-    //   getItem('Tom', '3'),
-    //   getItem('Bill', '4'),
-    //   getItem('Alex', '5'),
-    // ]),
+    
+    getItem('Electricity', 'sub1', <UserOutlined />, [
+      getItem('Add', '1'),
+      getItem('Current Month', '2'),
+       getItem('All', '3'),
+    ]),
+    getItem('Complain', 'sub2', <UserOutlined />, [
+      getItem('Add', '4'),
+      getItem('Current Month', '5'),
+      getItem('All', '6'),
+    ]),
+    getItem('Transformer', 'sub3', <UserOutlined />, [
+      getItem('Add', '7'),
+      getItem('Current Month', '8'),
+      getItem('All', '9'),
+    ]),
+    getItem('SAIDI & SAIFI', 'sub4', <UserOutlined />, [
+      getItem('Add', '10'),
+      getItem('Current Month', '11'),
+      getItem('All', '12'),
+    ]),
     // getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    // getItem('Files', '9', <FileOutlined />)
+    getItem('Logout', '13', <FileOutlined />)
   ];
 
   const handleAdminSidebarClick = (reportKey) => {

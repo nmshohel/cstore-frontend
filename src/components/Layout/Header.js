@@ -38,30 +38,7 @@ const ResponsiveNav = ({ children }) => {
         Info Entry
       </Link>
     </Menu.Item>
-    <Menu.SubMenu icon={<FileProtectOutlined />} title="Categories" key="3" style={{ color: "cyan", textDecoration: 'none' }}>
-      <Menu.Item key="3:7"><Link style={{ color: "green", textDecoration: 'none' }} href="/products/CPU-Processor">
-        CPU-Processor
-      </Link></Menu.Item>
-      <Menu.Item key="3:1"><Link style={{ color: "green", textDecoration: 'none' }} href="/products/Motherboard">
-        Motherboard
-      </Link></Menu.Item>
-      <Menu.Item key="3:2"><Link style={{ color: "green", textDecoration: 'none' }} href="/products/RAM">
-        RAM
-      </Link></Menu.Item>
-      <Menu.Item key="3:3"><Link style={{ color: "green", textDecoration: 'none' }} href="/products/Power Supply Unit">
-        Power Supply Unit
-      </Link></Menu.Item>
-      <Menu.Item key="3:4"><Link style={{ color: "green", textDecoration: 'none' }} href="/products/Storage Device">
-        Storage Device
-      </Link></Menu.Item>
-      <Menu.Item key="3:5"><Link style={{ color: "green", textDecoration: 'none' }} href="/products/Monitor">
-        Monitor
-      </Link></Menu.Item>
-      <Menu.Item key="3:6"><Link style={{ color: "green", textDecoration: 'none' }} href="/products/Others">
-        Others
-      </Link></Menu.Item>
-
-    </Menu.SubMenu>
+  
     {
       session?.role?.role == 'admin' ?
         <Menu.Item key="6" icon={<UsergroupAddOutlined />}>

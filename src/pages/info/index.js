@@ -83,11 +83,11 @@ const Categories = ({ electricity, electricity1 }) => {
       <Header>
         <InfoEntrySidebar category={category} setFormId={setFormId}>
           {!formId && <FeaturedCategories key={category.category} allProducts={category}></FeaturedCategories>}
-          {formId == 11 && <ElectricityAddForm onFinish={onFinish}></ElectricityAddForm>}
-          {formId == 12 && <ElectricityReport electricity={electricity}></ElectricityReport>}
-          {formId == 13 && <ElectricityReport electricity={electricity1}></ElectricityReport>}
-          {formId == 21 && <ComplainAddForm ></ComplainAddForm>}
-          {formId == 31 && <TransformerAddForm ></TransformerAddForm>}
+          {formId == 1 && <ElectricityAddForm onFinish={onFinish}></ElectricityAddForm>}
+          {formId == 2 && <ElectricityReport electricity={electricity}></ElectricityReport>}
+          {formId == 3 && <ElectricityReport electricity={electricity1}></ElectricityReport>}
+          {formId == 4 && <ComplainAddForm ></ComplainAddForm>}
+          {formId == 5 && <TransformerAddForm ></TransformerAddForm>}
         </InfoEntrySidebar>
       </Header >
 
