@@ -8,45 +8,16 @@ import React, { useState } from 'react';
 import { message, notification } from "antd";
 import { getSession, useSession } from 'next-auth/react';
 import ElectricityReport from '@/components/Reports/Electricity';
+import ComplainReport from '@/components/Reports/Complain';
 
-const Categories = ({ electricity, electricity1 }) => {
-  console.log(electricity)
+const Categories = ({ electricity, electricity1 ,complain,complain1}) => {
+  // console.log(electricity)
+  console.log(complain)
   const [api, contextHolder] = notification.useNotification();
   const { data: session } = useSession();
 
-  console.log(session?.zonal_code);
-  const onFinish = (values) => {
-    console.log('Form values:', values);
-    const zonal_code = session?.zonal_code?.zonal_code;
-    const withvalues = { ...values, zonal_code };
-    fetch("https://pbsactivities.onrender.com/api/electricityAdd", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(withvalues),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.data?.insertedId) {
-          const openNotificationWithIcon = (type) => {
-            api[type]({
-              message: data?.message,
-              description: "Inserted ID: " + data?.data?.insertedId,
-            });
-          };
-          openNotificationWithIcon('success')
-        } else {
-          const openNotificationWithIcon = (type) => {
-            api[type]({
-              message: data.message,
-              description: "Inserted ID: ",
-            });
-          };
-          openNotificationWithIcon('info')
-        }
-      });
-  };
+  console.log(session);
+  
 
 
   const [formId, setFormId] = useState("");
@@ -76,18 +47,19 @@ const Categories = ({ electricity, electricity1 }) => {
 
   ]
 
-  console.log(category);
+  // console.log(category);
   return (
     <div>
       {contextHolder}
       <Header>
         <InfoEntrySidebar category={category} setFormId={setFormId}>
           {!formId && <FeaturedCategories key={category.category} allProducts={category}></FeaturedCategories>}
-          {formId == 1 && <ElectricityAddForm onFinish={onFinish}></ElectricityAddForm>}
+          {formId == 1 && <ElectricityAddForm></ElectricityAddForm>}
           {formId == 2 && <ElectricityReport electricity={electricity}></ElectricityReport>}
           {formId == 3 && <ElectricityReport electricity={electricity1}></ElectricityReport>}
           {formId == 4 && <ComplainAddForm ></ComplainAddForm>}
-          {formId == 5 && <TransformerAddForm ></TransformerAddForm>}
+          {formId == 5 && <ComplainReport complain={complain}></ComplainReport>}
+          {formId == 6 && <ComplainReport complain={complain1}></ComplainReport>}
         </InfoEntrySidebar>
       </Header >
 
@@ -107,11 +79,17 @@ export async function getServerSideProps(context) {
     const data = await res.json();
     const res1 = await fetch(`https://pbsactivities.onrender.com/electricityAll/${zonalCode}`);
     const data1 = await res1.json();
+    const resComplain = await fetch(`http://localhost:5000/complain/${zonalCode}`);
+    const dataComplain = await resComplain.json();
+    const res1Complain = await fetch(`http://localhost:5000/complainAll/${zonalCode}`);
+    const data1Complain = await res1Complain.json();
 
     return {
       props: {
         electricity: data.data,
         electricity1: data1.data,
+        complain: dataComplain.data,
+        complain1: data1Complain.data,
       },
       // revalidate: 10,
     };
@@ -121,6 +99,8 @@ export async function getServerSideProps(context) {
       props: {
         electricity: [],
         electricity1: [],
+        complain: [],
+        complain1: [],
       },
       // revalidate: 10,
     };

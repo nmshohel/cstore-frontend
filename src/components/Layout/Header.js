@@ -33,11 +33,11 @@ const ResponsiveNav = ({ children }) => {
       Home
     </Link>
   </Menu.Item>
-    <Menu.Item key="2" icon={<FileProtectOutlined />}>
+    {/* <Menu.Item key="2" icon={<FileProtectOutlined />}>
       <Link style={{ textDecoration: 'none' }} href="/info">
         Info Entry
       </Link>
-    </Menu.Item>
+    </Menu.Item> */}
   
     {
       session?.role?.role == 'admin' ?
