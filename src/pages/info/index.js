@@ -17,9 +17,6 @@ const Categories = ({ electricity, electricity1 ,complain,complain1}) => {
   const { data: session } = useSession();
 
   console.log(session);
-  
-
-
   const [formId, setFormId] = useState("");
   const category = [
     {
@@ -60,6 +57,9 @@ const Categories = ({ electricity, electricity1 ,complain,complain1}) => {
           {formId == 4 && <ComplainAddForm ></ComplainAddForm>}
           {formId == 5 && <ComplainReport complain={complain}></ComplainReport>}
           {formId == 6 && <ComplainReport complain={complain1}></ComplainReport>}
+          {formId == 7 && <TransformerAddForm ></TransformerAddForm>}
+          {formId == 8 && <ComplainReport complain={complain}></ComplainReport>}
+          {formId == 9 && <ComplainReport complain={complain1}></ComplainReport>}
         </InfoEntrySidebar>
       </Header >
 

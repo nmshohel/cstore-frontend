@@ -168,7 +168,15 @@ const ComplainReport = ({ complain }) => {
       title: '3Days Over Complain',
       dataIndex: 'Days3OverComplain',
     },
-    
+    // {
+    //   title: 'Zonal',
+    //   dataIndex: 'zonal_code',
+    //   filters: distinctSubCategories.map(sc => ({
+    //     text: sc,
+    //     value: sc,
+    //   })),
+    //   onFilter: (value, record) => record?.subCategory?.subCategoryName?.indexOf(value) === 0,
+    // },
     {
       title: 'operation',
       dataIndex: 'operation',

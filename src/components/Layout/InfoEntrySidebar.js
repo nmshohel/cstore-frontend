@@ -37,18 +37,18 @@ const InfoEntrySidebar = ({ children, category, setFormId }) => {
       getItem('Current Month', '5'),
       getItem('All', '6'),
     ]),
-    getItem('Transformer', 'sub3', <UserOutlined />, [
-      getItem('Add', '7'),
-      getItem('Current Month', '8'),
-      getItem('All', '9'),
-    ]),
-    getItem('SAIDI & SAIFI', 'sub4', <UserOutlined />, [
-      getItem('Add', '10'),
-      getItem('Current Month', '11'),
-      getItem('All', '12'),
-    ]),
-    // getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('Logout', '13', <FileOutlined />)
+    // getItem('Transformer', 'sub3', <UserOutlined />, [
+    //   getItem('Add', '7'),
+    //   getItem('Current Month', '8'),
+    //   getItem('All', '9'),
+    // ]),
+    // getItem('SAIDI & SAIFI', 'sub4', <UserOutlined />, [
+    //   getItem('Add', '10'),
+    //   getItem('Current Month', '11'),
+    //   getItem('All', '12'),
+    // ]),
+    // // getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
+    // getItem('Logout', '13', <FileOutlined />)
   ];
 
   const handleAdminSidebarClick = (reportKey) => {

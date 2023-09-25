@@ -9,7 +9,7 @@ import {
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 
-const AdminSidebar = ({ children,setZonalCode }) => {
+const AdminSidebar = ({ children,setZonalCode,setFormId}) => {
   const { props } = children;
   console.log('Childer from Adminside', children);
   const [collapsed, setCollapsed] = useState(false);
@@ -27,28 +27,29 @@ const AdminSidebar = ({ children,setZonalCode }) => {
   };
 }
 const items = [
-  getItem('Reports', '1', <PieChartOutlined />, props.zonals.map(element => {
-    return getItem(element.zonal_name, element.zonal_code);
-  })),
-  getItem('Option 2', '2', <DesktopOutlined />),
-  getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3'),
-    getItem('Bill', '4'),
-    getItem('Alex', '5'),
+  
+  getItem('Reports', 'sub1', <PieChartOutlined />, [
+    getItem('Electricity', '1'),
+    getItem('Complain', '2'),
   ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  getItem('Files', '9', <FileOutlined />)
+  getItem('User', 'sub2', <UserOutlined />, [
+    getItem('Add User', '3'),
+    getItem('Manage User', '4'),
+  ]),
+  // getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
+  // getItem('Files', '9', <FileOutlined />)
 ];
 const handleAdminSidebarClick = (label, key) => {
   // Here you can define the action you want to perform when a menu item is clicked.
   console.log('Item with key', key, 'is clicked!');
-
+  
   // Create a new breadcrumb item
   const newItem = {
     label,
     key,
   };
   setZonalCode(key);
+  setFormId(key);
   // Update breadcrumbItems state with the new item
   setBreadcrumbItems(prevBreadcrumb => [ newItem]);
 };
