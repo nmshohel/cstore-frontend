@@ -1,111 +1,3 @@
-// import Header from '@/components/Layout/Header';
-// import InfoEntrySidebar from '@/components/Layout/InfoEntrySidebar';
-// import ComplainAddForm from '@/components/Pages/ComplainAddForm';
-// import ElectricityAddForm from '@/components/Pages/ElectricityAddForm';
-// import TransformerAddForm from '@/components/Pages/TransformerAddForm';
-// import FeaturedCategories from '@/components/UI/FeaturedCategories';
-// import React, { useState } from 'react';
-// import { message, notification } from "antd";
-// import { getSession, useSession } from 'next-auth/react';
-// import ElectricityReport from '@/components/Reports/Electricity';
-// import ComplainReport from '@/components/Reports/Complain';
-
-// const Categories = ({ electricity, electricity1 ,complain,complain1}) => {
-//   // console.log(electricity)
-//   console.log(complain)
-//   const [api, contextHolder] = notification.useNotification();
-//   const { data: session } = useSession();
-
-//   console.log(session);
-//   const [formId, setFormId] = useState("");
-//   const category = [
-//     {
-//       "id": "1",
-//       "category": "Electricity",
-//       "image_url": "https://www.startech.com.bd/image/cache/catalog/ram/cosair/vengeance-8gb-ddr4-3200mhz/vengeance-8gb-ddr4-3200mhz-01-228x228.webp"
-//     },
-//     {
-//       "id": "2",
-//       "category": "Complain",
-//       "image_url": "https://www.startech.com.bd/image/cache/catalog/cpu-cooler/antec/t120/t120-01-228x228.jpg"
-//     },
-//     {
-//       "id": "3",
-//       "category": "Transformer",
-//       "image_url": "https://www.startech.com.bd/image/cache/catalog/motherboard/asus/prime-h610m-K-d4/prime-h610m-K-d4-02-228x228.jpg"
-//     },
-//     {
-//       "id": "4",
-//       "category": "SAIDI & SAIFI",
-//       "image_url": "https://www.startech.com.bd/image/cache/catalog/ram/cosair/vengeance-8gb-ddr4-3200mhz/vengeance-8gb-ddr4-3200mhz-01-228x228.webp"
-//     }
-
-
-
-//   ]
-
-//   // console.log(category);
-//   return (
-//     <div>
-//       {contextHolder}
-//       <Header>
-//         <InfoEntrySidebar category={category} setFormId={setFormId}>
-//           {!formId && <FeaturedCategories key={category.category} allProducts={category}></FeaturedCategories>}
-//           {formId == 1 && <ElectricityAddForm></ElectricityAddForm>}
-//           {formId == 2 && <ElectricityReport electricity={electricity}></ElectricityReport>}
-//           {formId == 3 && <ElectricityReport electricity={electricity1}></ElectricityReport>}
-//           {formId == 4 && <ComplainAddForm ></ComplainAddForm>}
-//           {formId == 5 && <ComplainReport complain={complain}></ComplainReport>}
-//           {formId == 6 && <ComplainReport complain={complain1}></ComplainReport>}
-//           {formId == 7 && <TransformerAddForm ></TransformerAddForm>}
-//           {formId == 8 && <ComplainReport complain={complain}></ComplainReport>}
-//           {formId == 9 && <ComplainReport complain={complain1}></ComplainReport>}
-//         </InfoEntrySidebar>
-//       </Header >
-
-//     </div>
-//   );
-// };
-
-// export default Categories;
-
-// export async function getServerSideProps(context) {
-//   console.log(context);
-//   const session = await getSession(context);
-
-//   try {
-//     const zonalCode = session?.zonal_code?.zonal_code || ''; // Handle null or undefined session
-//     const res = await fetch(`https://pbsactivities.onrender.com/electricity/${zonalCode}`);
-//     const data = await res.json();
-//     const res1 = await fetch(`https://pbsactivities.onrender.com/electricityAll/${zonalCode}`);
-//     const data1 = await res1.json();
-//     const resComplain = await fetch(`http://localhost:5000/complain/${zonalCode}`);
-//     const dataComplain = await resComplain.json();
-//     const res1Complain = await fetch(`http://localhost:5000/complainAll/${zonalCode}`);
-//     const data1Complain = await res1Complain.json();
-
-//     return {
-//       props: {
-//         electricity: data.data,
-//         electricity1: data1.data,
-//         complain: dataComplain.data,
-//         complain1: data1Complain.data,
-//       },
-//       // revalidate: 10,
-//     };
-//   } catch (error) {
-//     console.error('Error fetching electricity data:', error);
-//     return {
-//       props: {
-//         electricity: [],
-//         electricity1: [],
-//         complain: [],
-//         complain1: [],
-//       },
-//       // revalidate: 10,
-//     };
-//   }
-// }
 
 
 import Header from '@/components/Layout/Header';
@@ -125,6 +17,8 @@ import AddModel from '@/components/Pages/Info/AddModel';
 import AddCapitalItem from '@/components/Pages/Info/AddCapitalItem';
 import AddRevenueItem from '@/components/Pages/Info/AddRevenueItem';
 import IssueCapitalItem from '@/components/Dashboard/IssueCapitalItem';
+import AddServicing from '@/components/Pages/Info/AddServicing';
+import IssueRevinueItem from '@/components/Dashboard/IssueRevinueItem';
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
@@ -169,6 +63,8 @@ export async function getServerSideProps(context) {
   const dataSubCategory = await resSubCategory.json();
   const resNotAssignCapitalItem = await fetch(`${process.env.BACKEND_URL}/api/v1/capital-item/not-assign/${session?.pbs_code?.pbs_code}`, getMethod);
   const dataNotAssignCapitalItem = await resNotAssignCapitalItem.json();
+  const resNotAssignRevenueItem = await fetch(`${process.env.BACKEND_URL}/api/v1/capital-item/not-assign/${session?.pbs_code?.pbs_code}`, getMethod);
+  const dataNotAssignRevenueItem = await resNotAssignRevenueItem.json();
   const resUsers = await fetch(`${process.env.BACKEND_URL}/api/v1/user/${session?.pbs_code?.pbs_code}`, getMethod);
   const dataUsers = await resUsers.json();
   const resZonal = await fetch(`${process.env.BACKEND_URL}/api/v1/zonal/${session?.pbs_code?.pbs_code}`, getMethod);
@@ -185,6 +81,7 @@ export async function getServerSideProps(context) {
       categroys: dataCategory.data || [],
       subcategroys: dataSubCategory.data || [],
       notAssignCapitalItem: dataNotAssignCapitalItem.data || [],
+      notAssignRevenueItem: dataNotAssignRevenueItem.data || [],
       users: dataUsers.data || [],
       zonals: dataZonal.data || [],
     },
@@ -192,7 +89,7 @@ export async function getServerSideProps(context) {
 }
 
 
-const Categories = ({ revenueItem, capitalItem, brands, models, suppliers, itemType, categroys, subcategroys, notAssignCapitalItem, users, zonals }) => {
+const Categories = ({ revenueItem, capitalItem, brands, models, suppliers, itemType, categroys, subcategroys, notAssignCapitalItem,notAssignRevenueItem, users, zonals }) => {
   const [api, contextHolder] = notification.useNotification();
   const { data: session } = useSession();
   // //console.log(session?.zonal_code);
@@ -232,12 +129,15 @@ const Categories = ({ revenueItem, capitalItem, brands, models, suppliers, itemT
           {formId == 3 && <AddCapitalItem brands={brands} models={models} suppliers={suppliers} itemType={itemType} categroys={categroys} subcategroys={subcategroys} ></AddCapitalItem>}
           {formId == 4 && <ManageCapitalItem capitalItem={capitalItem} brands={brands} models={models} suppliers={suppliers} itemType={itemType} categroys={categroys} subcategroys={subcategroys} ></ManageCapitalItem>}
           {formId == 5 && <IssueCapitalItem users={users} zonals={zonals} notAssignCapitalItem={notAssignCapitalItem}></IssueCapitalItem>}
+          {formId == 6 && <IssueRevinueItem users={users} zonals={zonals} notAssignRevenueItem={notAssignRevenueItem}></IssueRevinueItem>}
           {formId == 7 && <AddBrand></AddBrand>}
           {formId == 8 && <ManageBrand brands={brands}></ManageBrand>}
           {formId == 9 && <AddModel brands={brands}></AddModel>}
           {formId == 10 && <ManageModel models={models}></ManageModel>}
           {formId == 11 && <AddSupplier ></AddSupplier>}
           {formId == 12 && <ManageSupplier suppliers={suppliers}></ManageSupplier>}
+          {formId == 13 && <AddServicing revenueItem={revenueItem} suppliers={suppliers} ></AddServicing>}
+          {/* {formId == 14 && <ManageSupplier suppliers={suppliers}></ManageSupplier>} */}
         </InfoEntrySidebar>
       </Header>
     </div>
