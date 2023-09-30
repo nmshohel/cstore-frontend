@@ -1,39 +1,26 @@
 
-async function yourDatabaseQueryToFetchUserData(email, password) {
+async function yourDatabaseQueryToFetchUserData(mobileNo, password) {
   try {
-    const options = {
-      email,
-      password
-    };
-
-    const resUser = await fetch(`http://localhost:5000/user/login`, {
+    const options = { mobileNo, password }
+    const resUser = await fetch(`http://localhost:5000/api/v1/auth/login`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", // Corrected header name
+        "content-type": "application/json",
       },
       body: JSON.stringify(options),
-    });
-
+    })
     const dataUser = await resUser.json();
 
-    if (dataUser.data) {
-      const {
-        email,
-        role,
-        pbs_code,
-        zonal_code,
-        displayName,
-        image
-      } = dataUser.data;
+    if (resUser.ok) {
+      const { role, pbsCode, zonalCode, accessToken } = dataUser.data;
       const user = {
-        email,
+        mobileNo,
         role,
-        displayName,
-        pbs_code,
-        zonal_code,
-        image
+        accessToken,
+        pbs_code: pbsCode,
+        zonal_code: zonalCode,
       };
-      console.log(user)
+
       return user;
     } else {
       console.error("Login failed:", dataUser.message);

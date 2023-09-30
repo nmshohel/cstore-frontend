@@ -17,7 +17,7 @@ const authOptions = {
         const userdata = await yourDatabaseQueryToFetchUserData(mobileNo, password);
 
         if (userdata) {
-          return Promise.resolve({ id: 1, name: userdata.displayName, email: userdata.email });
+          return Promise.resolve({ id: 1, name: userdata.mobileNo, email: userdata.accessToken });
         } else {
           return Promise.resolve(null);
         }
@@ -27,22 +27,21 @@ const authOptions = {
   callbacks: {
     async session(session, user) {
       if (session.token.name) {
-        const userData = await yourDatabaseQueryToFetchUserDataDetail(session.token.email);
-        const email = userData.email || [];
+        const userData = await yourDatabaseQueryToFetchUserDataDetail(session.token.name, session.token.email);
+        const mobileNo = userData.mobileNo || [];
+        const name = userData.name || [];
         const role = userData.role || [];
         const pbs_code = userData.pbs_code || [];
         const zonal_code = userData.zonal_code || [];
-        const image = userData.image || [];
-        const displayName = session?.token?.name || [];
+        const accessToken = session?.token?.email || [];
 
         // Add roles to the session object
-        session.email = { ...session.user, email };
+        session.mobileNo = { ...session.user, mobileNo };
+        session.name = { ...session.user, name };
         session.role = { ...session.user, role };
         session.pbs_code = { ...session.user, pbs_code };
         session.zonal_code = { ...session.user, zonal_code };
-        session.displayName = { ...session.user, displayName };
-        session.image = { ...session.user, image };
-        // console.log("session from session",userData)
+        session.accessToken = { ...session.user, accessToken };
         return session;
       } else {
         return session;

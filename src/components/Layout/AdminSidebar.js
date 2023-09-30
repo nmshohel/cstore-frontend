@@ -5,13 +5,14 @@ import {
   PieChartOutlined,
   TeamOutlined,
   UserOutlined,
+  BuildOutlined
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 
-const AdminSidebar = ({ children,setZonalCode,setFormId}) => {
+const AdminSidebar = ({ children, setZonalCode, setformId }) => {
   const { props } = children;
-  console.log('Childer from Adminside', children);
+  //console.log('Childer from Adminside', children);
   const [collapsed, setCollapsed] = useState(false);
   const [breadcrumbItems, setBreadcrumbItems] = useState([]);
 
@@ -19,45 +20,64 @@ const AdminSidebar = ({ children,setZonalCode,setFormId}) => {
     token: { colorBgContainer },
   } = theme.useToken();
   function getItem(label, key, icon, children) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  };
-}
-const items = [
-  
-  getItem('Reports', 'sub1', <PieChartOutlined />, [
-    getItem('Electricity', '1'),
-    getItem('Complain', '2'),
-  ]),
-  getItem('User', 'sub2', <UserOutlined />, [
-    getItem('Add User', '3'),
-    getItem('Manage User', '4'),
-  ]),
-  // getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  // getItem('Files', '9', <FileOutlined />)
-];
-const handleAdminSidebarClick = (label, key) => {
-  // Here you can define the action you want to perform when a menu item is clicked.
-  console.log('Item with key', key, 'is clicked!');
-  
-  // Create a new breadcrumb item
-  const newItem = {
-    label,
-    key,
-  };
-  setZonalCode(key);
-  setFormId(key);
-  // Update breadcrumbItems state with the new item
-  setBreadcrumbItems(prevBreadcrumb => [ newItem]);
-};
+    return {
+      key,
+      icon,
+      children,
+      label,
+    };
+  }
+  const items = [
 
-//  const handleAdminSidebarClick = (reportKey) => {
-//     // Here you can define the action you want to perform when a report item is clicked.
-//     console.log('Report with key', reportKey, 'is clicked!');
-//   };
+    getItem('Sub Category', 'sub1', <UserOutlined />, [
+      getItem('Add Sub Category', '1'),
+      getItem('Manage Sub Category', '2'),
+    ]),
+    getItem('Category', 'sub2', <UserOutlined />, [
+      getItem('Add Category', '3'),
+      getItem('Manage Category', '4'),
+    ]),
+
+    getItem('Designation', 'sub3', <UserOutlined />, [
+      getItem('Add Designation', '5'),
+      getItem('Manage Designation', '6'),
+    ]),
+    getItem('Department', 'sub4', <TeamOutlined />, [
+      getItem('Add Department', '7'),
+      getItem('Manage Department', '8'),
+    ]),
+    getItem('User', 'sub5', <UserOutlined />, [
+      getItem('Add User', '9'),
+      getItem('Manage Users', '10'),
+    ]),
+    getItem('Office', 'sub6', <BuildOutlined />, [
+      getItem('Add HQ/Zonal/SubZonal', '11'),
+      getItem('Add CCS', '12'),
+      getItem('HQ/Zonal/SubZonal', '13'),
+      getItem('CCS', '14'),
+    ]),
+    // getItem('Team', 'sub5', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
+    // getItem('Files', '9', <FileOutlined />)
+  ];
+  const handleAdminSidebarClick = (label, key) => {
+    // Here you can define the action you want to perform when a menu item is clicked.
+    //console.log('Item with key', key, 'is clicked!');
+
+    // Create a new breadcrumb item
+    const newItem = {
+      label,
+      key,
+    };
+    setZonalCode(key);
+    setformId(key);
+    // Update breadcrumbItems state with the new item
+    setBreadcrumbItems(prevBreadcrumb => [newItem]);
+  };
+
+  //  const handleAdminSidebarClick = (reportKey) => {
+  //     // Here you can define the action you want to perform when a report item is clicked.
+  //     //console.log('Report with key', reportKey, 'is clicked!');
+  //   };
   return (
     <Layout
       style={{
@@ -68,7 +88,7 @@ const handleAdminSidebarClick = (label, key) => {
         <div className="demo-logo-vertical" />
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider> */}
-       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
         {/* <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
           {items.map((item) => {
@@ -133,9 +153,9 @@ const handleAdminSidebarClick = (label, key) => {
           >
             <Breadcrumb.Item>Admin</Breadcrumb.Item>
             <Breadcrumb.Item>Reports</Breadcrumb.Item>
-           {breadcrumbItems.map(item => (
-                <Breadcrumb.Item key={item.key}>{item.label}</Breadcrumb.Item>
-              ))}
+            {breadcrumbItems.map(item => (
+              <Breadcrumb.Item key={item.key}>{item.label}</Breadcrumb.Item>
+            ))}
 
           </Breadcrumb>
           <div
@@ -153,8 +173,8 @@ const handleAdminSidebarClick = (label, key) => {
             textAlign: 'center',
           }}
         >
-          Developed By: Md. Daduggaman Sumon, JE(IT), Chittagong PBS-2.
-          Copyright Reserved ©2023 
+          Developed By: Md. Daduggaman Sumon, JE(IT) & N M Shohel, JE(IT)
+          Copyright Reserved ©2023
         </Footer>
       </Layout>
     </Layout>

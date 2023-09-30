@@ -12,7 +12,7 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const InfoEntrySidebar = ({ children, category, setFormId }) => {
   const { props } = children;
-  // console.log('Category from Adminside', category);
+  // //console.log('Category from Adminside', category);
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
@@ -26,34 +26,38 @@ const InfoEntrySidebar = ({ children, category, setFormId }) => {
     };
   }
   const items = [
-    
-    getItem('Electricity', 'sub1', <UserOutlined />, [
+
+    getItem('Revinue Item', 'sub1', <UserOutlined />, [
       getItem('Add', '1'),
-      getItem('Current Month', '2'),
-       getItem('All', '3'),
+      getItem('Manage', '2'),
     ]),
-    getItem('Complain', 'sub2', <UserOutlined />, [
-      getItem('Add', '4'),
-      getItem('Current Month', '5'),
-      getItem('All', '6'),
+    getItem('Capital Item', 'sub2', <UserOutlined />, [
+      getItem('Add', '3'),
+      getItem('Manage', '4'),
     ]),
-    // getItem('Transformer', 'sub3', <UserOutlined />, [
-    //   getItem('Add', '7'),
-    //   getItem('Current Month', '8'),
-    //   getItem('All', '9'),
-    // ]),
-    // getItem('SAIDI & SAIFI', 'sub4', <UserOutlined />, [
-    //   getItem('Add', '10'),
-    //   getItem('Current Month', '11'),
-    //   getItem('All', '12'),
-    // ]),
-    // // getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    // getItem('Logout', '13', <FileOutlined />)
+    getItem('Product Issue', 'sub3', <UserOutlined />, [
+      getItem('Capital Item', '5'),
+      getItem('Revinue Item', '6'),
+    ]),
+    getItem('Brand', 'sub4', <UserOutlined />, [
+      getItem('Add Brand', '7'),
+      getItem('Manage Brand', '8'),
+    ]),
+    getItem('Model', 'sub5', <UserOutlined />, [
+      getItem('Add Model', '9'),
+      getItem('Manage Model', '10'),
+    ]),
+    getItem('Supplier', 'sub6', <UserOutlined />, [
+      getItem('Add Supplier', '11'),
+      getItem('Manage Supplier', '12'),
+    ]),
+    // getItem('Files', '9', <FileOutlined />)
+    // getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
   ];
 
   const handleAdminSidebarClick = (reportKey) => {
     // Here you can define the action you want to perform when a report item is clicked.
-    console.log('Report with key', reportKey, 'is clicked!');
+    //console.log('Report with key', reportKey, 'is clicked!');
     setFormId(reportKey)
   };
   return (
@@ -125,7 +129,7 @@ const InfoEntrySidebar = ({ children, category, setFormId }) => {
             textAlign: 'center',
           }}
         >
-          Developed By: Md. Daduggaman Sumon, JE(IT), Chittagong PBS-2.
+          Developed By: Md. Daduggaman Sumon, JE(IT) & N M Shohel, JE(IT)
           Copyright Reserved ©2023
         </Footer>
       </Layout>

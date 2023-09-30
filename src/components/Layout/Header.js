@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout, Menu, Switch, Button, Drawer, Row, Col } from "antd";
 import {
   HomeOutlined,
@@ -14,6 +14,7 @@ import Image from 'next/image';
 const ResponsiveNav = ({ children }) => {
 
   const { data: session } = useSession();
+
   // console.log(session);
   const [visible, setVisible] = useState(false);
   const [theme, setTheme] = useState('light');
@@ -28,17 +29,19 @@ const ResponsiveNav = ({ children }) => {
   const onClose = () => {
     setVisible(false);
   };
-  const menu = <>     <Menu.Item key="1" icon={<HomeOutlined />}>
-    <Link style={{ textDecoration: 'none' }} href="/">
-      Home
-    </Link>
-  </Menu.Item>
-    {/* <Menu.Item key="2" icon={<FileProtectOutlined />}>
-      <Link style={{ textDecoration: 'none' }} href="/info">
-        Info Entry
+  const menu = <>
+   <Menu.Item key="3" icon={<FileProtectOutlined />}>
+      <Link style={{ textDecoration: 'none' }} href="/dashboard">
+        My Products
       </Link>
-    </Menu.Item> */}
-  
+    </Menu.Item>
+    {
+      session?.role?.role == 'admin' || session?.role?.role == 'incharge' ?
+        <Menu.Item key="2" icon={<FileProtectOutlined />}>
+          <Link style={{ textDecoration: 'none' }} href="/info">
+            Product Entry
+          </Link>
+        </Menu.Item> : ""}
     {
       session?.role?.role == 'admin' ?
         <Menu.Item key="6" icon={<UsergroupAddOutlined />}>
@@ -57,7 +60,7 @@ const ResponsiveNav = ({ children }) => {
               className="logo"
               style={{ color: "white", paddingLeft: "50px" }}
             >
-              PBS Activities
+              PBS Common Store
             </div>
           </Col>
           <Col xs={0} sm={0} md={10}>
@@ -79,7 +82,9 @@ const ResponsiveNav = ({ children }) => {
                     </Link>
                   </Button>
                 </Menu.Item> : <>
-                  <Menu.SubMenu icon={<Image alt="User Name" src={session?.image?.image} width={25} height={25} />} title={session?.session?.user?.name} key="7" style={{ color: "cyan", textDecoration: 'none' }}>
+                  <Menu.SubMenu 
+                  // icon={<Image alt="User Name" src={session?.session?.user?.image} width={25} height={25} />}
+                   title={session?.name?.name} key="7" style={{ color: "cyan", textDecoration: 'none' }}>
                     <Menu.Item key="7:1"><Link style={{ color: "green", textDecoration: 'none' }} href="/profile">
                       Profile
                     </Link></Menu.Item>
@@ -112,8 +117,6 @@ const ResponsiveNav = ({ children }) => {
             <br />
             <br />
             {menu}
-
-
             {
               !session?.user ? <Menu.Item key="6">
                 <Button type="primary" >
@@ -121,7 +124,7 @@ const ResponsiveNav = ({ children }) => {
                     Login
                   </Link>
                 </Button>
-              </Menu.Item> : <Menu.SubMenu icon={<Image alt="User Name" src={session?.image.image} width={25} height={25} />} title={session?.user?.name} key="7" style={{ color: "cyan", textDecoration: 'none' }}>
+              </Menu.Item> : <Menu.SubMenu icon={<Image alt="User Name" src={session?.user?.image} width={25} height={25} />} title={session?.user?.name} key="7" style={{ color: "cyan", textDecoration: 'none' }}>
                 <Menu.Item key="7:1"><Link style={{ color: "green", textDecoration: 'none' }} href="/profile">
                   Profile
                 </Link></Menu.Item>
