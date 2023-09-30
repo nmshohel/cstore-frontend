@@ -1,34 +1,44 @@
 
-import { MongoClient } from 'mongodb';
+async function yourDatabaseQueryToFetchUserData(email, password) {
+  try {
+    const options = {
+      email,
+      password
+    };
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.1ojfuwp.mongodb.net/?retryWrites=true&w=majority`;
+    const resUser = await fetch(`http://localhost:5000/user/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Corrected header name
+      },
+      body: JSON.stringify(options),
+    });
 
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: '1', // Update this to a non-deprecated version
-    strict: true,
-    deprecationErrors: true,
-  },
-});
+    const dataUser = await resUser.json();
 
-async function yourDatabaseQueryToFetchUserData(iemail) {
-    try {
-      await client.connect();
-    // Assuming you have a MongoDB collection named 'users'
-   const userCollection = client.db('pbs-office-information').collection('activitiesusers');
-    const user = await userCollection.findOne({ email:iemail });
-    if (!user) {
-      // User not found
-      return null;
+    if (dataUser.data) {
+      const {
+        email,
+        role,
+        pbs_code,
+        zonal_code,
+        displayName,
+        image
+      } = dataUser.data;
+      const user = {
+        email,
+        role,
+        displayName,
+        pbs_code,
+        zonal_code,
+        image
+      };
+      console.log(user)
+      return user;
+    } else {
+      console.error("Login failed:", dataUser.message);
     }
-
-    // Extract the necessary user data, including roles, from the 'user' object
-    const { name, email, role,zonal_code,pbs_code} = user;
-
-    // Return the user data as an object
-    return { name, email, role,zonal_code,pbs_code };
   } catch (error) {
-    // Handle any errors that might occur during the database query
     console.error("Error fetching user data:", error);
     return null;
   }

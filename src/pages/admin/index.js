@@ -60,13 +60,3 @@ const AdminPage = ({ zonals,context ,electricity1,complain1}) => {
     );
 };
 export default AdminPage;
-
-// AdminPage.getLayout = function getLayout(page) {
-//   return (
-//     <Header>
-//     <AdminSidebar setZonalCode={setZonalCode}>
-//       {page}
-//     </AdminSidebar>
-//   </Header >
-//   )
-// }

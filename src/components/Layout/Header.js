@@ -79,7 +79,7 @@ const ResponsiveNav = ({ children }) => {
                     </Link>
                   </Button>
                 </Menu.Item> : <>
-                  <Menu.SubMenu icon={<Image alt="User Name" src={session?.session?.user?.image} width={25} height={25} />} title={session?.session?.user?.name} key="7" style={{ color: "cyan", textDecoration: 'none' }}>
+                  <Menu.SubMenu icon={<Image alt="User Name" src={session?.image?.image} width={25} height={25} />} title={session?.session?.user?.name} key="7" style={{ color: "cyan", textDecoration: 'none' }}>
                     <Menu.Item key="7:1"><Link style={{ color: "green", textDecoration: 'none' }} href="/profile">
                       Profile
                     </Link></Menu.Item>
@@ -121,7 +121,7 @@ const ResponsiveNav = ({ children }) => {
                     Login
                   </Link>
                 </Button>
-              </Menu.Item> : <Menu.SubMenu icon={<Image alt="User Name" src={session?.user?.image} width={25} height={25} />} title={session?.user?.name} key="7" style={{ color: "cyan", textDecoration: 'none' }}>
+              </Menu.Item> : <Menu.SubMenu icon={<Image alt="User Name" src={session?.image.image} width={25} height={25} />} title={session?.user?.name} key="7" style={{ color: "cyan", textDecoration: 'none' }}>
                 <Menu.Item key="7:1"><Link style={{ color: "green", textDecoration: 'none' }} href="/profile">
                   Profile
                 </Link></Menu.Item>
