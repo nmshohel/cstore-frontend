@@ -31,7 +31,7 @@ const ResponsiveNav = ({ children }) => {
   };
   const menu = <>
    <Menu.Item key="3" icon={<FileProtectOutlined />}>
-      <Link style={{ textDecoration: 'none' }} href="/dashboard">
+      <Link style={{ textDecoration: 'none' }} href="/">
         My Products
       </Link>
     </Menu.Item>

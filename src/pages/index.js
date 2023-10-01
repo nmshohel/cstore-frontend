@@ -12,11 +12,12 @@ import CertifyCapitalItem from '@/components/Dashboard/CertifyCapitalItem';
 import ApproveCapitalItem from '@/components/Dashboard/ApproveCapitalItem';
 // import IssueCapitalItem from '@/components/Dashboard/IssueCapitalItem';
 import ReceivedCapitalItem from '@/components/Dashboard/ReceivedCapitalItem';
+import MyCapitalItem from '@/components/Dashboard/MyCapitalItem';
 
 export async function getServerSideProps(context) {
     
     const session = await getSession(context);
-    console.log("session dashboard: ",session)
+    // console.log("session dashboard: ",session);
     // const session = {
     //     mobileNo: { mobileNo: '01866115239' },
     //     pbs_code: { pbs_code: '29' },
@@ -46,6 +47,9 @@ export async function getServerSideProps(context) {
     const dataCapitalItem = await resCapitalItem.json();
     const resNotReceivedCapitalItem = await fetch(`${process.env.BACKEND_URL}/api/v1/capital-item/not-receive/${session?.pbs_code?.pbs_code}`, getMethod);
     const dataNotReceivedCapitalItem = await resNotReceivedCapitalItem.json();
+    const resMyCapitalItem = await fetch(`${process.env.BACKEND_URL}/api/v1/capital-item/assignTo/${session?.mobileNo?.mobileNo}`, getMethod);
+    const dataMyCapitalItem = await resMyCapitalItem.json();
+
     let dataNotCertifyCapitalItem = "", dataNotApproveCapitalItem = "";
     if (session?.role?.role == "admin") {
         const resNotCertifyCapitalItem = await fetch(`${process.env.BACKEND_URL}/api/v1/capital-item/not-certify/${session?.pbs_code?.pbs_code}`, getMethod);
@@ -65,14 +69,16 @@ export async function getServerSideProps(context) {
             // notReceiveCapitalItem: [],
             revenueItem: dataRevenueItem.data || [],
             capitalItem: dataCapitalItem.data || [],
+            myCapitalItem: dataMyCapitalItem.data || [],
             notCertifyCapitalItem: dataNotCertifyCapitalItem.data || [],
             notApproveCapitalItem: dataNotApproveCapitalItem.data || [],
             notReceiveCapitalItem: dataNotReceivedCapitalItem.data || [],
         },
     };
 }
-const Categories = ({ context,revenueItem, capitalItem, notCertifyCapitalItem, notApproveCapitalItem, notReceiveCapitalItem }) => {
+const Categories = ({ context,revenueItem, capitalItem,myCapitalItem, notCertifyCapitalItem, notApproveCapitalItem, notReceiveCapitalItem }) => {
     // console.log(dataRevenueItem, capitalItem, notReceiveCapitalItem)
+    // console.log(myCapitalItem)
     const [api, contextHolder] = notification.useNotification();
     const { data: session } = useSession();
     const [formId, setFormId] = useState("");
@@ -88,6 +94,7 @@ const Categories = ({ context,revenueItem, capitalItem, notCertifyCapitalItem, n
                     {formId == 1 && <CertifyCapitalItem notCertifyCapitalItem={notCertifyCapitalItem}></CertifyCapitalItem>}
                     {formId == 2 && <ApproveCapitalItem notApproveCapitalItem={notApproveCapitalItem}></ApproveCapitalItem>}
                     {formId == 5 && <ReceivedCapitalItem notReceiveCapitalItem={notReceiveCapitalItem}></ReceivedCapitalItem>}
+                    {formId == 6 || formId==""&& <MyCapitalItem myCapitalItem={myCapitalItem}></MyCapitalItem>}
                 </DashboardSidebar>
             </Header >
 
