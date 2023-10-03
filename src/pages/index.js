@@ -94,7 +94,7 @@ const Categories = ({ context,revenueItem, capitalItem,myCapitalItem, notCertify
                     {formId == 1 && <CertifyCapitalItem notCertifyCapitalItem={notCertifyCapitalItem}></CertifyCapitalItem>}
                     {formId == 2 && <ApproveCapitalItem notApproveCapitalItem={notApproveCapitalItem}></ApproveCapitalItem>}
                     {formId == 5 && <ReceivedCapitalItem notReceiveCapitalItem={notReceiveCapitalItem}></ReceivedCapitalItem>}
-                    {formId == 6 || formId==""&& <MyCapitalItem myCapitalItem={myCapitalItem}></MyCapitalItem>}
+                    {(formId == 6 || formId == "") && <MyCapitalItem myCapitalItem={myCapitalItem}></MyCapitalItem>}
                 </DashboardSidebar>
             </Header >
 

@@ -81,7 +81,7 @@ const EditableCell = ({
   return <td {...restProps}>{childNode}</td>;
 };
 const ManageUsers = ({ users }) => {
-  //console.log(users);
+  console.log(users);
   const [dataSource, setDataSource] = useState(users);
   const [count, setCount] = useState(2);
   const handleDelete = (key) => {

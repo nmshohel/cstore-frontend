@@ -15,7 +15,7 @@ const ResponsiveNav = ({ children }) => {
 
   const { data: session } = useSession();
 
-  // console.log(session);
+  console.log(session);
   const [visible, setVisible] = useState(false);
   const [theme, setTheme] = useState('light');
   const [current, setCurrent] = useState('1');

@@ -191,7 +191,7 @@ const AddCapitalItem = ({ itemType, categroys, subcategroys, brands, models, sup
                     <Option value='10 years'>10 Years</Option>
                 </Select>
             </Form.Item>
-            <Form.Item label="Status" name="status" hasFeedback rules={[
+            {/* <Form.Item label="Status" name="status" hasFeedback rules={[
                 {
                     required: true,
                     message: 'Please provide a Status',
@@ -202,7 +202,7 @@ const AddCapitalItem = ({ itemType, categroys, subcategroys, brands, models, sup
                     <Option value='In Active'>In Active</Option>
                     <Option value='Damaged'>Damaged</Option>
                 </Select>
-            </Form.Item>
+            </Form.Item> */}
             <Form.Item label="Item Type" name="itemTypeId" hasFeedback rules={[
                 {
                     required: true,

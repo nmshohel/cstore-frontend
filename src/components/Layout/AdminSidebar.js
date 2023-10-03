@@ -49,6 +49,8 @@ const AdminSidebar = ({ children, setZonalCode, setformId }) => {
     getItem('User', 'sub5', <UserOutlined />, [
       getItem('Add User', '9'),
       getItem('Manage Users', '10'),
+      getItem('Request for Transfer', '15'),
+      getItem('Release', '16'),
     ]),
     getItem('Office', 'sub6', <BuildOutlined />, [
       getItem('Add HQ/Zonal/SubZonal', '11'),
