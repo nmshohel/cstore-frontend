@@ -82,15 +82,15 @@ const EditableCell = ({
     }
     return <td {...restProps}>{childNode}</td>;
 };
-const ReleaseUser = ({ requestedUser }) => {
-    console.log(requestedUser);
+const ApproveZonalTransfer = ({ zonalRequestedUser }) => {
+    console.log(zonalRequestedUser);
     const [api, contextHolder] = notification.useNotification();
-    const [dataSource, setDataSource] = useState(requestedUser);
+    const [dataSource, setDataSource] = useState(zonalRequestedUser);
     const [count, setCount] = useState(2);
     const { data: session } = useSession();
     const handleRelease = (mobileNo) => {
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/user/pbs-posting-request-approve/${mobileNo}`, {
+        fetch(`http://localhost:5000/api/v1/user/zonal-posting-request-approve/${mobileNo}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -128,20 +128,20 @@ const ReleaseUser = ({ requestedUser }) => {
         },
 
         {
-            title: 'Current Office',
+            title: 'Current Zonal',
             dataIndex: ['zonals', 'zonalName'],
         },
         {
-            title: 'Requested PBS',
-            dataIndex: ['requestePBS', 'pbsName'],
+            title: 'Requested Zonal',
+            dataIndex: ['requesteZonal', 'zonalName'],
         },
         {
             title: 'operation',
             dataIndex: 'operation',
             render: (_, record) =>
                 dataSource.length >= 1 ? (
-                    <Popconfirm title="Sure to Release?" onConfirm={() => handleRelease(record?.mobileNo)}>
-                        <a>Release</a>
+                    <Popconfirm title="Sure to Approve?" onConfirm={() => handleRelease(record?.mobileNo)}>
+                        <a>Approve</a>
                     </Popconfirm>
                 ) : null,
         },
@@ -199,7 +199,7 @@ const ReleaseUser = ({ requestedUser }) => {
       >
         Add a row
       </Button> */}
-            <Title level={2}>Manage User</Title>
+            <Title level={2}>Approve Zonal Transfer</Title>
             <Table
                 components={components}
                 rowClassName={() => 'editable-row'}
@@ -210,4 +210,4 @@ const ReleaseUser = ({ requestedUser }) => {
         </div>
     );
 };
-export default ReleaseUser;
+export default ApproveZonalTransfer;

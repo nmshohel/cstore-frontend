@@ -23,6 +23,8 @@ import { headers } from "next/dist/client/components/headers";
 import { getSession } from "next-auth/react";
 import RequestTransfer from "@/components/Pages/Users/RequestTransfer";
 import ReleaseUser from "@/components/Pages/Users/ReleaseUser";
+import ZonalTransferRequest from "@/components/Pages/Users/ZonalTransferRequest";
+import ApproveZonalTransfer from "@/components/Pages/Users/ApproveZonalTransfer";
 export async function getServerSideProps(context) {
   const session = await getSession(context);
   // const session = {
@@ -67,6 +69,8 @@ export async function getServerSideProps(context) {
   const dataDesignation = await resDesignation.json();
   const resUsers = await fetch(`${process.env.BACKEND_URL}/api/v1/user/${session?.pbs_code?.pbs_code}`, getMethod);
   const dataUsers = await resUsers.json();
+  const resZonalTransferRequestedUser = await fetch(`${process.env.BACKEND_URL}/api/v1/user/zonal-all-transfer-requested-user/${session?.pbs_code?.pbs_code}`, getMethod);
+  const dataZonalTransferRequestedUser = await resZonalTransferRequestedUser.json();
   const resTransferRequestedUser = await fetch(`${process.env.BACKEND_URL}/api/v1/user/pbs-all-transfer-requested-user/${session?.pbs_code?.pbs_code}`, getMethod);
   const dataTransferRequestedUser = await resTransferRequestedUser.json();
 
@@ -81,11 +85,12 @@ export async function getServerSideProps(context) {
       users: dataUsers.data || [],
       zonals: dataZonal.data || [],
       ccs: dataCC.data || [],
+      zonalRequestedUser: dataZonalTransferRequestedUser.data || [],
       requestedUser: dataTransferRequestedUser.data || [],
     },
   };
 }
-const AdminPage = ({ itemType, categroys, subcategroys, designations, departments, users, zonals, ccs, context, requestedUser }) => {
+const AdminPage = ({ itemType, categroys, subcategroys, designations, departments, users, zonals, ccs, context, zonalRequestedUser, requestedUser }) => {
   const session = getSession(context);
   const [zonalCode, setZonalCode] = useState(session?.zonal_code?.zonal_code || null);
   const [formId, setformId] = useState(1);
@@ -105,8 +110,10 @@ const AdminPage = ({ itemType, categroys, subcategroys, designations, department
           {formId == 8 && <ManageDepartment departments={departments}></ManageDepartment>}
           {formId == 9 && <AddUser></AddUser>}
           {formId == 10 && <ManageUsers users={users}></ManageUsers>}
-          {formId == 15 && <RequestTransfer users={users}></RequestTransfer>}
-          {formId == 16 && <ReleaseUser requestedUser={requestedUser}></ReleaseUser>}
+          {formId == 15 && <ZonalTransferRequest zonals={zonals} users={users}></ZonalTransferRequest>}
+          {formId == 16 && <ApproveZonalTransfer zonalRequestedUser={zonalRequestedUser}></ApproveZonalTransfer>}
+          {formId == 17 && <RequestTransfer users={users}></RequestTransfer>}
+          {formId == 18 && <ReleaseUser requestedUser={requestedUser}></ReleaseUser>}
           {formId == 11 && <AddZonal ></AddZonal>}
           {formId == 12 && <AddCC zonals={zonals} ></AddCC>}
           {formId == 13 && <Zonal zonals={zonals} ></Zonal>}

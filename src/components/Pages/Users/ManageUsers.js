@@ -95,7 +95,7 @@ const ManageUsers = ({ users }) => {
     },
     {
       title: 'Name',
-      dataIndex: 'name',
+      dataIndex: ['employee', 'name'],
       width: '20%',
       editable: true,
     },

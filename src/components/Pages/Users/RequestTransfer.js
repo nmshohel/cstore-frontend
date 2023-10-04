@@ -91,13 +91,13 @@ const RequestTransfer = ({ users }) => {
     const handleRequest = (mobileNo) => {
         // console.log(key);
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/user/pbs-posting-request`, {
+        fetch(`http://localhost:5000/api/v1/user/pbs-posting-request/${mobileNo}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
                 Authorization: accessToken,
             },
-            body: JSON.stringify({ mobileNo }),
+            // body: JSON.stringify({ mobileNo }),
         })
             .then((res) => res.json())
             .then((data) => {
@@ -119,7 +119,7 @@ const RequestTransfer = ({ users }) => {
         },
         {
             title: 'Name',
-            dataIndex: 'name',
+            dataIndex: ['employee', 'name'],
             width: '20%',
             editable: true,
         },

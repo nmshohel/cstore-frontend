@@ -13,9 +13,9 @@ async function yourDatabaseQueryToFetchUserDataDetail(mobileNo, accessToken) {
         const dataUser = await resUser.json();
         // //console.log(dataUser)
         if (resUser.ok) {
-            const { mobileNo, role, pbsCode, zonalCode,name } = dataUser.data;
+            const { mobileNo, role, pbsCode, zonalCode, employee } = dataUser.data;
             const user = {
-                name,
+                name: employee.name,
                 mobileNo,
                 role,
                 pbs_code: pbsCode,

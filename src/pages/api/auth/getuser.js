@@ -12,7 +12,7 @@ async function yourDatabaseQueryToFetchUserData(mobileNo, password) {
     const dataUser = await resUser.json();
 
     if (resUser.ok) {
-      const { role, pbsCode, zonalCode, accessToken } = dataUser.data;
+      const { role, pbsCode, zonalCode, accessToken } = dataUser?.data;
       const user = {
         mobileNo,
         role,
