@@ -92,19 +92,19 @@ const config = {
         },
     ],
 };
-const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
-    console.log(notReceiveCapitalItem);
+const MyRevenueItem = ({ myRevenueItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
+    console.log(myRevenueItem);
     const { data: session } = useSession();
     const [filteredCategory, setFilteredCategory] = useState([]);
     const [filteredSubCategory, setFilteredSubCategory] = useState([]);
     const [filteredModel, setModel] = useState([]);
     console.log(filteredCategory, filteredSubCategory)
     const handleCategory = (key) => {
-        const newData = categroys?.filter((item) => item.itemTypeId == key);
+        const newData = categroys.filter((item) => item.itemTypeId == key);
         setFilteredCategory(newData);
     };
     const handleSubCategory = (key) => {
-        const newData = subcategroys?.filter((item) => item.categoryId == key);
+        const newData = subcategroys.filter((item) => item.categoryId == key);
         setFilteredSubCategory(newData);
     };
 
@@ -117,15 +117,15 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
     const [distinctZonals, setdistinctZonals] = useState([]);
 
     useEffect(() => {
-        const subCategoryNames = Array.from(new Set(notReceiveCapitalItem.map(item => item?.subCategory?.subCategoryName)));
+        const subCategoryNames = Array.from(new Set(myRevenueItem?.map(item => item?.subCategory?.subCategoryName)));
         setDistinctSubCategories(subCategoryNames);
-        const CategoryNames = Array.from(new Set(notReceiveCapitalItem.map(item => item?.category?.categoryName)));
+        const CategoryNames = Array.from(new Set(myRevenueItem?.map(item => item?.category?.categoryName)));
         setDistinctCategories(CategoryNames);
-        const zonalNames = Array.from(new Set(notReceiveCapitalItem.map(item => item?.zonals?.zonalName)));
+        const zonalNames = Array.from(new Set(myRevenueItem?.map(item => item?.zonals?.zonalName)));
         setdistinctZonals(zonalNames);
-    }, [capitalItem]);
+    }, [myRevenueItem]);
     //console.log(distinctCategories);
-    const [dataSource, setDataSource] = useState(notReceiveCapitalItem);
+    const [dataSource, setDataSource] = useState(myRevenueItem);
     const [count, setCount] = useState(2);
     const handleDelete = (key) => {
         const newData = dataSource.filter((item) => item.id !== key);
@@ -187,26 +187,26 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
             })),
             onFilter: (value, record) => record.zonals.zonalName.indexOf(value) === 0,
         },
-        {
-            title: 'operation',
-            dataIndex: 'operation',
-            render: (_, record) =>
-                dataSource.length >= 1 ? (
-                    <Popconfirm title="Have You Recevied The Product?" onConfirm={() => onFinish(record)}>
-                        <a>Receive</a>
-                    </Popconfirm>
-                ) : null,
-        },
-        {
-            title: 'operation',
-            dataIndex: 'operation',
-            render: (_, record) =>
-                dataSource.length >= 1 ? (
-                    <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record?.id)}>
-                        <a>Delete</a>
-                    </Popconfirm>
-                ) : null,
-        },
+        // {
+        //     title: 'operation',
+        //     dataIndex: 'operation',
+        //     render: (_, record) =>
+        //         dataSource.length >= 1 ? (
+        //             <Popconfirm title="Sure to Approve?" onConfirm={() => onFinish(record)}>
+        //                 <a>Approve</a>
+        //             </Popconfirm>
+        //         ) : null,
+        // },
+        // {
+        //     title: 'operation',
+        //     dataIndex: 'operation',
+        //     render: (_, record) =>
+        //         dataSource.length >= 1 ? (
+        //             <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record?.id)}>
+        //                 <a>Delete</a>
+        //             </Popconfirm>
+        //         ) : null,
+        // },
     ];
     const onChange = (pagination, filters, sorter, extra) => {
         //console.log('params', pagination, filters, sorter, extra);
@@ -306,12 +306,12 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
     const [api, contextHolder] = notification.useNotification();
     const onFinish = (values) => {
         console.log(values)
-        const pbsCode = session?.pbs_code?.pbs_code;
-        const receivedByMobileNo = session?.mobileNo?.mobileNo;
-        const withvalues = { ...values, pbsCode, receivedByMobileNo };
+        // const pbsCode = session?.pbs_code?.pbs_code;
+        const approveByMobileNo = session?.mobileNo?.mobileNo;
+        const withvalues = { approveByMobileNo };
         console.log(withvalues);
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/capital-item/receive-capital-item/${values?.id}`, {
+        fetch(`http://localhost:5000/api/v1/capital-item/approve-capital-item/${values?.id}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -343,7 +343,7 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
       >
         Add a row
       </Button> */}
-            <Title level={2}>Receive Capital Item</Title>
+            <Title level={2}>My Revenue Item</Title>
             <Table
                 components={components}
                 rowClassName={() => 'editable-row'}
@@ -397,4 +397,4 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
         </div>
     );
 };
-export default ReceivedCapitalItem;
+export default MyRevenueItem;

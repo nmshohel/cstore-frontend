@@ -112,7 +112,7 @@ const config = {
 };
 
 const ManageCapitalItem = ({ revenueItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
-    //console.log(capitalItem);
+    console.log(revenueItem);
     const { data: session } = useSession();
     const [filteredCategory, setFilteredCategory] = useState([]);
     const [filteredSubCategory, setFilteredSubCategory] = useState([]);

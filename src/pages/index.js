@@ -13,9 +13,11 @@ import ApproveCapitalItem from '@/components/Dashboard/ApproveCapitalItem';
 // import IssueCapitalItem from '@/components/Dashboard/IssueCapitalItem';
 import ReceivedCapitalItem from '@/components/Dashboard/ReceivedCapitalItem';
 import MyCapitalItem from '@/components/Dashboard/MyCapitalItem';
+import ReceivedRevenueItem from '@/components/Dashboard/ReceivedRevenueItem';
+import MyRevenueItem from '@/components/Dashboard/MyRevenueItem';
 
 export async function getServerSideProps(context) {
-    
+
     const session = await getSession(context);
     // console.log("session dashboard: ",session);
     // const session = {
@@ -49,7 +51,10 @@ export async function getServerSideProps(context) {
     const dataNotReceivedCapitalItem = await resNotReceivedCapitalItem.json();
     const resMyCapitalItem = await fetch(`${process.env.BACKEND_URL}/api/v1/capital-item/assignTo/${session?.mobileNo?.mobileNo}`, getMethod);
     const dataMyCapitalItem = await resMyCapitalItem.json();
-
+    const resMyRevenueItem = await fetch(`${process.env.BACKEND_URL}/api/v1/revenue-item/reveived-by`, getMethod);
+    const dataMyRevenueItem = await resMyRevenueItem.json();
+    const resNotReceivedRevenueItem = await fetch(`${process.env.BACKEND_URL}/api/v1/revenue-item/ReveivePending`, getMethod);
+    const dataNotReceivedRevenueItem = await resNotReceivedRevenueItem.json();
     let dataNotCertifyCapitalItem = "", dataNotApproveCapitalItem = "";
     if (session?.role?.role == "admin") {
         const resNotCertifyCapitalItem = await fetch(`${process.env.BACKEND_URL}/api/v1/capital-item/not-certify/${session?.pbs_code?.pbs_code}`, getMethod);
@@ -69,14 +74,16 @@ export async function getServerSideProps(context) {
             // notReceiveCapitalItem: [],
             revenueItem: dataRevenueItem.data || [],
             capitalItem: dataCapitalItem.data || [],
+            notReceivedRevenueItem: dataNotReceivedRevenueItem.data || [],
             myCapitalItem: dataMyCapitalItem.data || [],
+            myRevenueItem: dataMyRevenueItem.data || [],
             notCertifyCapitalItem: dataNotCertifyCapitalItem.data || [],
             notApproveCapitalItem: dataNotApproveCapitalItem.data || [],
             notReceiveCapitalItem: dataNotReceivedCapitalItem.data || [],
         },
     };
 }
-const Categories = ({ context,revenueItem, capitalItem,myCapitalItem, notCertifyCapitalItem, notApproveCapitalItem, notReceiveCapitalItem }) => {
+const Categories = ({ context, revenueItem, capitalItem, notReceivedRevenueItem, myCapitalItem, myRevenueItem, notCertifyCapitalItem, notApproveCapitalItem, notReceiveCapitalItem }) => {
     // console.log(dataRevenueItem, capitalItem, notReceiveCapitalItem)
     // console.log(myCapitalItem)
     const [api, contextHolder] = notification.useNotification();
@@ -94,7 +101,9 @@ const Categories = ({ context,revenueItem, capitalItem,myCapitalItem, notCertify
                     {formId == 1 && <CertifyCapitalItem notCertifyCapitalItem={notCertifyCapitalItem}></CertifyCapitalItem>}
                     {formId == 2 && <ApproveCapitalItem notApproveCapitalItem={notApproveCapitalItem}></ApproveCapitalItem>}
                     {formId == 5 && <ReceivedCapitalItem notReceiveCapitalItem={notReceiveCapitalItem}></ReceivedCapitalItem>}
-                    {(formId == 6 || formId == "") && <MyCapitalItem myCapitalItem={myCapitalItem}></MyCapitalItem>}
+                    {formId == 6 && <ReceivedRevenueItem notReceivedRevenueItem={notReceivedRevenueItem}></ReceivedRevenueItem>}
+                    {(formId == 7 || formId == "") && <MyCapitalItem myCapitalItem={myCapitalItem}></MyCapitalItem>}
+                    {(formId == 8 || formId == "") && <MyRevenueItem myRevenueItem={myRevenueItem}></MyRevenueItem>}
                 </DashboardSidebar>
             </Header >
 

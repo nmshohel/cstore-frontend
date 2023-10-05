@@ -92,11 +92,13 @@ const config = {
         },
     ],
 };
-const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
-    console.log(notReceiveCapitalItem);
+const ReceivedRevenueItem = ({ capitalItem, notReceivedRevenueItem, itemType, categroys, subcategroys, brands, models, suppliers, users, zonals }) => {
+    console.log(notReceivedRevenueItem, capitalItem);
+    // console.log(users);
     const { data: session } = useSession();
     const [filteredCategory, setFilteredCategory] = useState([]);
     const [filteredSubCategory, setFilteredSubCategory] = useState([]);
+    const [filteredUsers, setFilteredUsers] = useState([]);
     const [filteredModel, setModel] = useState([]);
     console.log(filteredCategory, filteredSubCategory)
     const handleCategory = (key) => {
@@ -106,6 +108,10 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
     const handleSubCategory = (key) => {
         const newData = subcategroys?.filter((item) => item.categoryId == key);
         setFilteredSubCategory(newData);
+    };
+    const handleUsers = (key) => {
+        const newData = users?.filter((item) => item.zonalCode == key);
+        setFilteredUsers(newData);
     };
 
     const handleModel = (key) => {
@@ -117,15 +123,15 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
     const [distinctZonals, setdistinctZonals] = useState([]);
 
     useEffect(() => {
-        const subCategoryNames = Array.from(new Set(notReceiveCapitalItem.map(item => item?.subCategory?.subCategoryName)));
+        const subCategoryNames = Array.from(new Set(notReceivedRevenueItem?.map(item => item?.subCategory?.subCategoryName)));
         setDistinctSubCategories(subCategoryNames);
-        const CategoryNames = Array.from(new Set(notReceiveCapitalItem.map(item => item?.category?.categoryName)));
+        const CategoryNames = Array.from(new Set(notReceivedRevenueItem?.map(item => item?.category?.categoryName)));
         setDistinctCategories(CategoryNames);
-        const zonalNames = Array.from(new Set(notReceiveCapitalItem.map(item => item?.zonals?.zonalName)));
+        const zonalNames = Array.from(new Set(notReceivedRevenueItem?.map(item => item?.zonals?.zonalName)));
         setdistinctZonals(zonalNames);
-    }, [capitalItem]);
+    }, [notReceivedRevenueItem]);
     //console.log(distinctCategories);
-    const [dataSource, setDataSource] = useState(notReceiveCapitalItem);
+    const [dataSource, setDataSource] = useState(notReceivedRevenueItem);
     const [count, setCount] = useState(2);
     const handleDelete = (key) => {
         const newData = dataSource.filter((item) => item.id !== key);
@@ -202,11 +208,31 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
             dataIndex: 'operation',
             render: (_, record) =>
                 dataSource.length >= 1 ? (
-                    <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record?.id)}>
-                        <a>Delete</a>
+                    <Popconfirm title="Sure to Cancel?" onConfirm={() => handleDelete(record?.id)}>
+                        <a>Cancel</a>
                     </Popconfirm>
                 ) : null,
         },
+        // {
+        //     title: 'operation',
+        //     dataIndex: 'operation',
+        //     render: (_, record) =>
+        //         dataSource.length >= 1 ? (
+        //             <Popconfirm title="Sure to Issue?" onConfirm={() => showModal(record)}>
+        //                 <a>Issue</a>
+        //             </Popconfirm>
+        //         ) : null,
+        // },
+        // {
+        //     title: 'operation',
+        //     dataIndex: 'operation',
+        //     render: (_, record) =>
+        //         dataSource.length >= 1 ? (
+        //             <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record?.id)}>
+        //                 <a>Delete</a>
+        //             </Popconfirm>
+        //         ) : null,
+        // },
     ];
     const onChange = (pagination, filters, sorter, extra) => {
         //console.log('params', pagination, filters, sorter, extra);
@@ -260,19 +286,6 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
             // const specificDate = moment(selectedCapitalItem.purchasedate, 'YYYY-MM-DD');
             form.setFieldsValue({
                 id: selectedCapitalItem.id,
-                serialNo: selectedCapitalItem.serialNo,
-                description: selectedCapitalItem.description,
-                purchasedate: moment(selectedCapitalItem.purchasedate, 'YYYY-MM-DD'),
-                price: selectedCapitalItem.price,
-                identificationNo: selectedCapitalItem.identificationNo,
-                warranty: selectedCapitalItem.warranty,
-                status: selectedCapitalItem.status,
-                itemTypeId: selectedCapitalItem.itemTypeId,
-                categoryId: selectedCapitalItem.categoryId,
-                subCategoryid: selectedCapitalItem.subCategoryid,
-                brandId: selectedCapitalItem.brandId,
-                modelId: selectedCapitalItem.modelId,
-                supplierId: selectedCapitalItem.supplierId,
             });
         }
     }, [selectedCapitalItem, form]);
@@ -305,19 +318,19 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
     };
     const [api, contextHolder] = notification.useNotification();
     const onFinish = (values) => {
-        console.log(values)
-        const pbsCode = session?.pbs_code?.pbs_code;
-        const receivedByMobileNo = session?.mobileNo?.mobileNo;
-        const withvalues = { ...values, pbsCode, receivedByMobileNo };
-        console.log(withvalues);
+        // console.log(values)
+        // const pbsCode = session?.pbs_code?.pbs_code;
+        // const receivedByMobileNo = session?.mobileNo?.mobileNo;
+        // const withvalues = { ...values, pbsCode, receivedByMobileNo };
+        // console.log(withvalues);
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/capital-item/receive-capital-item/${values?.id}`, {
+        fetch(`http://localhost:5000/api/v1/revenue-item/receive-revenue-item/${values?.id}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
                 Authorization: accessToken,
             },
-            body: JSON.stringify(withvalues),
+            // body: JSON.stringify(withvalues),
         })
             .then((res) => res.json())
             .then((data) => {
@@ -343,7 +356,7 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
       >
         Add a row
       </Button> */}
-            <Title level={2}>Receive Capital Item</Title>
+            <Title level={2}>Receive Revenue Item</Title>
             <Table
                 components={components}
                 rowClassName={() => 'editable-row'}
@@ -352,16 +365,16 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
                 columns={columns}
                 onChange={onChange}
             />
-            {/* <Modal
+            <Modal
                 open={open}
                 // title="Update Category"
                 onCancel={handleCancel}
                 footer={null}
             >
 
-                <Form {...formItemLayout} style={{ maxWidth: 600 }} onFinish={onFinish} form={form}>
+                {/* <Form {...formItemLayout} style={{ maxWidth: 600 }} onFinish={onFinish} form={form}>
                     {contextHolder}
-                    <Title level={2}>Certify Capital Item</Title>
+                    <Title level={2}>Issue & Assign Revenue Item</Title>
 
                     <Form.Item
                         label="Product ID"
@@ -378,23 +391,56 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
                     </Form.Item>
 
 
-                    <Form.Item label="Category" name="categoryId" hasFeedback rules={[
+                    <Form.Item label="Zonal" name="zonalCode" hasFeedback rules={[
                         {
                             required: true,
-                            message: 'Please provide a Category name',
+                            message: 'Please provide a Zonal',
                         },
                     ]}>
-                        <Select placeholder="Select a Category" allowClear onChange={(value) => handleSubCategory(value)}>
-                            {filteredCategory.map((category) => (
-                                <Option value={category.id} key={category.id}>
-                                    {category.categoryName}
+                        <Select placeholder="Select a Zonal" allowClear onChange={(value) => handleUsers(value)}>
+                            {zonals?.map((category) => (
+                                <Option value={category.zonalCode} key={category.id}>
+                                    {category.zonalName}
                                 </Option>
                             ))}
                         </Select>
                     </Form.Item>
-                </Form>
-            </Modal> */}
+                    <Form.Item label="Employee" name="assignToMobileNo" hasFeedback rules={[
+                        {
+                            required: true,
+                            message: 'Please provide a Employee',
+                        },
+                    ]}>
+                        <Select placeholder="Select a Employee" allowClear >
+                            {filteredUsers?.map((category) => (
+                                <Option value={category.mobileNo} key={category.mobileNo}>
+                                    {category.mobileNo}
+                                </Option>
+                            ))}
+                        </Select>
+                    </Form.Item>
+                    <Form.Item label="Employee" name="identificationNo" hasFeedback rules={[
+                        {
+                            required: true,
+                            message: 'Please provide a Capital Item',
+                        },
+                    ]}>
+                        <Select placeholder="Select a Capital Item" allowClear >
+                            {capitalItem?.map((category) => (
+                                <Option value={category.identificationNo} key={category.identificationNo}>
+                                    {category.identificationNo}
+                                </Option>
+                            ))}
+                        </Select>
+                    </Form.Item>
+                    <Form.Item wrapperCol={{ xs: { span: 24, offset: 0 }, sm: { span: 14, offset: 6 } }}>
+                        <Button type="primary" htmlType="submit" block>
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </Form> */}
+            </Modal>
         </div>
     );
 };
-export default ReceivedCapitalItem;
+export default ReceivedRevenueItem;

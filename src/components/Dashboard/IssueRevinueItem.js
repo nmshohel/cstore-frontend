@@ -92,9 +92,9 @@ const config = {
         },
     ],
 };
-const IssueRevinueItem = ({ itemType, categroys, subcategroys, brands, models, suppliers, notAssignRevenueItem, users, zonals }) => {
-    console.log(zonals);
-    console.log(users);
+const IssueRevinueItem = ({ capitalItem, itemType, categroys, subcategroys, brands, models, suppliers, notAssignRevenueItem, users, zonals }) => {
+    console.log(notAssignRevenueItem, capitalItem);
+    // console.log(users);
     const { data: session } = useSession();
     const [filteredCategory, setFilteredCategory] = useState([]);
     const [filteredSubCategory, setFilteredSubCategory] = useState([]);
@@ -299,15 +299,15 @@ const IssueRevinueItem = ({ itemType, categroys, subcategroys, brands, models, s
     const [api, contextHolder] = notification.useNotification();
     const onFinish = (values) => {
         console.log(values)
-
+        const { assignToMobileNo, identificationNo, zonalCode } = values;
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/capital-item/assign-capital-item/${values?.id}`, {
+        fetch(`http://localhost:5000/api/v1/revenue-item/assign-revenue-item/${values?.id}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
                 Authorization: accessToken,
             },
-            body: JSON.stringify(values),
+            body: JSON.stringify({ assignToMobileNo, identificationNo, zonalCode }),
         })
             .then((res) => res.json())
             .then((data) => {
@@ -333,7 +333,7 @@ const IssueRevinueItem = ({ itemType, categroys, subcategroys, brands, models, s
       >
         Add a row
       </Button> */}
-            <Title level={2}>Issue Capital Item</Title>
+            <Title level={2}>Issue & Assign Revenue Item</Title>
             <Table
                 components={components}
                 rowClassName={() => 'editable-row'}
@@ -351,7 +351,7 @@ const IssueRevinueItem = ({ itemType, categroys, subcategroys, brands, models, s
 
                 <Form {...formItemLayout} style={{ maxWidth: 600 }} onFinish={onFinish} form={form}>
                     {contextHolder}
-                    <Title level={2}>Issue Capital Item</Title>
+                    <Title level={2}>Issue & Assign Revenue Item</Title>
 
                     <Form.Item
                         label="Product ID"
@@ -382,7 +382,7 @@ const IssueRevinueItem = ({ itemType, categroys, subcategroys, brands, models, s
                             ))}
                         </Select>
                     </Form.Item>
-                    <Form.Item label="Employee" name="assignTo" hasFeedback rules={[
+                    <Form.Item label="Employee" name="assignToMobileNo" hasFeedback rules={[
                         {
                             required: true,
                             message: 'Please provide a Employee',
@@ -392,6 +392,20 @@ const IssueRevinueItem = ({ itemType, categroys, subcategroys, brands, models, s
                             {filteredUsers?.map((category) => (
                                 <Option value={category.mobileNo} key={category.mobileNo}>
                                     {category.mobileNo}
+                                </Option>
+                            ))}
+                        </Select>
+                    </Form.Item>
+                    <Form.Item label="Employee" name="identificationNo" hasFeedback rules={[
+                        {
+                            required: true,
+                            message: 'Please provide a Capital Item',
+                        },
+                    ]}>
+                        <Select placeholder="Select a Capital Item" allowClear >
+                            {capitalItem?.map((category) => (
+                                <Option value={category.identificationNo} key={category.identificationNo}>
+                                    {category.identificationNo}
                                 </Option>
                             ))}
                         </Select>

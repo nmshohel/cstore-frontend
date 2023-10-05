@@ -63,7 +63,7 @@ export async function getServerSideProps(context) {
   const dataSubCategory = await resSubCategory.json();
   const resNotAssignCapitalItem = await fetch(`${process.env.BACKEND_URL}/api/v1/capital-item/not-assign/${session?.pbs_code?.pbs_code}`, getMethod);
   const dataNotAssignCapitalItem = await resNotAssignCapitalItem.json();
-  const resNotAssignRevenueItem = await fetch(`${process.env.BACKEND_URL}/api/v1/capital-item/not-assign/${session?.pbs_code?.pbs_code}`, getMethod);
+  const resNotAssignRevenueItem = await fetch(`${process.env.BACKEND_URL}/api/v1/revenue-item/assignPending`, getMethod);
   const dataNotAssignRevenueItem = await resNotAssignRevenueItem.json();
   const resUsers = await fetch(`${process.env.BACKEND_URL}/api/v1/user/${session?.pbs_code?.pbs_code}`, getMethod);
   const dataUsers = await resUsers.json();
@@ -89,7 +89,7 @@ export async function getServerSideProps(context) {
 }
 
 
-const Categories = ({ revenueItem, capitalItem, brands, models, suppliers, itemType, categroys, subcategroys, notAssignCapitalItem,notAssignRevenueItem, users, zonals }) => {
+const Categories = ({ revenueItem, capitalItem, brands, models, suppliers, itemType, categroys, subcategroys, notAssignCapitalItem, notAssignRevenueItem, users, zonals }) => {
   const [api, contextHolder] = notification.useNotification();
   const { data: session } = useSession();
   // //console.log(session?.zonal_code);
@@ -129,7 +129,7 @@ const Categories = ({ revenueItem, capitalItem, brands, models, suppliers, itemT
           {formId == 3 && <AddCapitalItem brands={brands} models={models} suppliers={suppliers} itemType={itemType} categroys={categroys} subcategroys={subcategroys} ></AddCapitalItem>}
           {formId == 4 && <ManageCapitalItem capitalItem={capitalItem} brands={brands} models={models} suppliers={suppliers} itemType={itemType} categroys={categroys} subcategroys={subcategroys} ></ManageCapitalItem>}
           {formId == 5 && <IssueCapitalItem users={users} zonals={zonals} notAssignCapitalItem={notAssignCapitalItem}></IssueCapitalItem>}
-          {formId == 6 && <IssueRevinueItem users={users} zonals={zonals} notAssignRevenueItem={notAssignRevenueItem}></IssueRevinueItem>}
+          {formId == 6 && <IssueRevinueItem zonals={zonals} users={users} capitalItem={capitalItem} notAssignRevenueItem={notAssignRevenueItem}></IssueRevinueItem>}
           {formId == 7 && <AddBrand></AddBrand>}
           {formId == 8 && <ManageBrand brands={brands}></ManageBrand>}
           {formId == 9 && <AddModel brands={brands}></AddModel>}

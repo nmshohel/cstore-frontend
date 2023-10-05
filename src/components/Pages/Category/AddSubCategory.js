@@ -100,7 +100,7 @@ const AddSubCategory = ({ categroys }) => {
                 hasFeedback
                 rules={[
                     {
-                        required: true,
+                        // required: true,
                         message: 'Please provide a Item Code',
                     },
                 ]}

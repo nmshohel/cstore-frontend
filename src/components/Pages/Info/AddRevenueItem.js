@@ -69,7 +69,7 @@ const AddRevenueItem = ({ itemType, categroys, subcategroys, brands, models, sup
     const [api, contextHolder] = notification.useNotification();
     const { data: session } = useSession();
     const onFinish = (values) => {
-        //console.log('Received values:', values);
+        console.log('Received values:', values);
         const pbsCode = session?.pbs_code?.pbs_code;
         const addByMobileNo = session?.mobileNo?.mobileNo;
         const withvalues = { ...values, pbsCode, addByMobileNo };
@@ -179,7 +179,7 @@ const AddRevenueItem = ({ itemType, categroys, subcategroys, brands, models, sup
                     <Option value='10 years'>10 Years</Option>
                 </Select>
             </Form.Item>
-            <Form.Item label="Status" name="status" hasFeedback rules={[
+            {/* <Form.Item label="Status" name="activeOrcondemnationStatus" hasFeedback rules={[
                 {
                     required: true,
                     message: 'Please provide a Status',
@@ -190,7 +190,7 @@ const AddRevenueItem = ({ itemType, categroys, subcategroys, brands, models, sup
                     <Option value='In Active'>In Active</Option>
                     <Option value='Damaged'>Damaged</Option>
                 </Select>
-            </Form.Item>
+            </Form.Item> */}
             <Form.Item label="Item Type" name="itemTypeId" hasFeedback rules={[
                 {
                     required: true,
