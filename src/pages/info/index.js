@@ -19,6 +19,7 @@ import AddRevenueItem from '@/components/Pages/Info/AddRevenueItem';
 import IssueCapitalItem from '@/components/Dashboard/IssueCapitalItem';
 import AddServicing from '@/components/Pages/Info/AddServicing';
 import IssueRevinueItem from '@/components/Dashboard/IssueRevinueItem';
+import ManageServicing from '@/components/Pages/Info/ManageServicing';
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
@@ -69,6 +70,8 @@ export async function getServerSideProps(context) {
   const dataUsers = await resUsers.json();
   const resZonal = await fetch(`${process.env.BACKEND_URL}/api/v1/zonal/${session?.pbs_code?.pbs_code}`, getMethod);
   const dataZonal = await resZonal.json();
+  const resServicing = await fetch(`${process.env.BACKEND_URL}/api/v1/servicing`, getMethod);
+  const dataServicing = await resServicing.json();
   // //console.log(data);
   return {
     props: {
@@ -84,12 +87,13 @@ export async function getServerSideProps(context) {
       notAssignRevenueItem: dataNotAssignRevenueItem.data || [],
       users: dataUsers.data || [],
       zonals: dataZonal.data || [],
+      servicing: dataServicing.data || [],
     },
   };
 }
 
 
-const Categories = ({ revenueItem, capitalItem, brands, models, suppliers, itemType, categroys, subcategroys, notAssignCapitalItem, notAssignRevenueItem, users, zonals }) => {
+const Categories = ({ revenueItem, capitalItem, brands, models, suppliers, itemType, categroys, subcategroys, notAssignCapitalItem, notAssignRevenueItem, users, zonals, servicing }) => {
   const [api, contextHolder] = notification.useNotification();
   const { data: session } = useSession();
   // //console.log(session?.zonal_code);
@@ -137,7 +141,7 @@ const Categories = ({ revenueItem, capitalItem, brands, models, suppliers, itemT
           {formId == 11 && <AddSupplier ></AddSupplier>}
           {formId == 12 && <ManageSupplier suppliers={suppliers}></ManageSupplier>}
           {formId == 13 && <AddServicing users={users} capitalItem={capitalItem} revenueItem={revenueItem} suppliers={suppliers} ></AddServicing>}
-          {/* {formId == 14 && <ManageSupplier suppliers={suppliers}></ManageSupplier>} */}
+          {formId == 14 && <ManageServicing servicing={servicing}></ManageServicing>}
         </InfoEntrySidebar>
       </Header>
     </div>
