@@ -1,32 +1,60 @@
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+"use client"
+import Header from '@/components/Layout/Header';
+import React, { useState } from 'react';
+import { message, notification } from "antd";
+import { getSession, useSession } from 'next-auth/react';
 
-import Head from "next/head";
+import Sidebar from '@/components/Layout/Sidebar';
+import UserProfile from '@/components/Pages/Users/UserProfile';
 
-import Header from "@/components/Layout/Header";
-import Sidebar from "@/components/Layout/Sidebar";
+export async function getServerSideProps(context) {
 
-const ProfilePage = () => {
-  // console.log("role from profile",role);
+  const session = await getSession(context);
+
+  if (!session || session?.role?.role !== "admin") {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  const accessToken = session?.accessToken?.accessToken;
+  const getMethod = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: accessToken,
+    },
+  }
+  const resEmployee = await fetch(`${process.env.BACKEND_URL}/api/v1/employee/${session?.mobileNo?.mobileNo}`, getMethod);
+  const dataEmployee = await resEmployee.json();
+
+  return {
+    props: {
+      employee: dataEmployee.data || [],
+    },
+  };
+}
+const Profile = ({ employee }) => {
+  // console.log(dataRevenueItem, capitalItem, notReceiveCapitalItem)
+  // console.log(myCapitalItem)
+  const [api, contextHolder] = notification.useNotification();
+  const { data: session } = useSession();
+  const [formId, setFormId] = useState("");
+
   return (
-    <div style={{ textAlign: "center" }}>
-      <Head>
-        <title>User Profile</title>
-      </Head>
-      <h1>User Profile</h1>
-      <Avatar size={64} icon={<UserOutlined />} />
+    <div>
+      {contextHolder}
+      <Header>
+        <Sidebar setFormId={setFormId}>
+          {formId == 1 && <UserProfile employee={employee}></UserProfile>}
+
+        </Sidebar>
+      </Header >
+
     </div>
   );
 };
 
-export default ProfilePage;
-
-ProfilePage.getLayout = function getLayout(page) {
-  return (
-    <Header>
-    <Sidebar>
-      {page}
-    </Sidebar>
-  </Header >
-  )
-}
+export default Profile;
