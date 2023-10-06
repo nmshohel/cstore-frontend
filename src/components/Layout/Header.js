@@ -30,7 +30,7 @@ const ResponsiveNav = ({ children }) => {
     setVisible(false);
   };
   const menu = <>
-   <Menu.Item key="3" icon={<FileProtectOutlined />}>
+    <Menu.Item key="3" icon={<FileProtectOutlined />}>
       <Link style={{ textDecoration: 'none' }} href="/">
         My Products
       </Link>
@@ -82,9 +82,9 @@ const ResponsiveNav = ({ children }) => {
                     </Link>
                   </Button>
                 </Menu.Item> : <>
-                  <Menu.SubMenu 
-                  // icon={<Image alt="User Name" src={session?.session?.user?.image} width={25} height={25} />}
-                   title={session?.name?.name} key="7" style={{ color: "cyan", textDecoration: 'none' }}>
+                  <Menu.SubMenu
+                    icon={<Image alt="User Name" src={session?.photoUrl?.photoUrl} width={25} height={25} />}
+                    title={session?.name?.name} key="7" style={{ color: "cyan", textDecoration: 'none' }}>
                     <Menu.Item key="7:1"><Link style={{ color: "green", textDecoration: 'none' }} href="/profile">
                       Profile
                     </Link></Menu.Item>

@@ -16,6 +16,7 @@ async function yourDatabaseQueryToFetchUserDataDetail(mobileNo, accessToken) {
             const { mobileNo, role, pbsCode, zonalCode, employee } = dataUser.data;
             const user = {
                 name: employee.name,
+                photoUrl: employee.photoUrl,
                 mobileNo,
                 role,
                 pbs_code: pbsCode,

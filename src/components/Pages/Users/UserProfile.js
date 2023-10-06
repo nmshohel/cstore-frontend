@@ -59,18 +59,16 @@ const UserProfile = ({ employee }) => {
         }
     }, [employee, form]);
     const onFinish = (values) => {
-        //console.log('Received values:', values);
-        const pbsCode = session?.pbs_code?.pbs_code;
+        console.log('Received values:', values);
         const accessToken = session?.accessToken?.accessToken;
-        const withvalues = { ...values, pbsCode };
         //console.log(withvalues);
-        fetch(`http://localhost:5000/api/v1/user/create-user`, {
-            method: "POST",
+        fetch(`http://localhost:5000/api/v1/employee/${values.mobileNo}`, {
+            method: "PATCH",
             headers: {
                 "content-type": "application/json",
                 Authorization: accessToken,
             },
-            body: JSON.stringify(withvalues),
+            body: JSON.stringify(values),
         })
             .then((res) => res.json())
             .then((data) => {
@@ -85,13 +83,7 @@ const UserProfile = ({ employee }) => {
 
             });
     };
-    const roles = [
-        { id: 4, role: 'employee', value: 'user' },
-        // { id: 4, role: 'employee', value: 'employee' },
-        { id: 3, role: 'Zonal Admin', value: 'zonaladmin' },
-        { id: 2, role: 'Admin', value: 'admin' },
-        { id: 1, role: 'Super Admin', value: 'superadmin' },
-    ]
+
     return (
         <Form {...formItemLayout} style={{ maxWidth: 600 }} onFinish={onFinish} form={form}>
             {contextHolder}
@@ -139,12 +131,12 @@ const UserProfile = ({ employee }) => {
                 label="Training ID"
                 name="trgId"
                 hasFeedback
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please provide a Training ID',
-                    },
-                ]}
+            // rules={[
+            //     {
+            //         required: true,
+            //         message: 'Please provide a Training ID',
+            //     },
+            // ]}
             >
                 <Input placeholder="Training ID" />
             </Form.Item>

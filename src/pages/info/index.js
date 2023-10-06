@@ -136,7 +136,7 @@ const Categories = ({ revenueItem, capitalItem, brands, models, suppliers, itemT
           {formId == 10 && <ManageModel models={models}></ManageModel>}
           {formId == 11 && <AddSupplier ></AddSupplier>}
           {formId == 12 && <ManageSupplier suppliers={suppliers}></ManageSupplier>}
-          {formId == 13 && <AddServicing revenueItem={revenueItem} suppliers={suppliers} ></AddServicing>}
+          {formId == 13 && <AddServicing users={users} capitalItem={capitalItem} revenueItem={revenueItem} suppliers={suppliers} ></AddServicing>}
           {/* {formId == 14 && <ManageSupplier suppliers={suppliers}></ManageSupplier>} */}
         </InfoEntrySidebar>
       </Header>

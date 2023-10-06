@@ -391,7 +391,7 @@ const IssueCapitalItem = ({ itemType, categroys, subcategroys, brands, models, s
                         <Select placeholder="Select a Employee" allowClear >
                             {filteredUsers?.map((category) => (
                                 <Option value={category.mobileNo} key={category.mobileNo}>
-                                    {category.mobileNo}
+                                    {category.employee.name}, {category.employee.designation}
                                 </Option>
                             ))}
                         </Select>

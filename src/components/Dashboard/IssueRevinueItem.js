@@ -391,7 +391,7 @@ const IssueRevinueItem = ({ capitalItem, itemType, categroys, subcategroys, bran
                         <Select placeholder="Select a Employee" allowClear >
                             {filteredUsers?.map((category) => (
                                 <Option value={category.mobileNo} key={category.mobileNo}>
-                                    {category.mobileNo}
+                                    {category.employee.name}, {category.employee.designation}
                                 </Option>
                             ))}
                         </Select>

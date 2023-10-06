@@ -33,6 +33,7 @@ const authOptions = {
         const role = userData.role || [];
         const pbs_code = userData.pbs_code || [];
         const zonal_code = userData.zonal_code || [];
+        const photoUrl = userData.photoUrl || [];
         const accessToken = session?.token?.email || [];
 
         // Add roles to the session object
@@ -41,6 +42,7 @@ const authOptions = {
         session.role = { ...session.user, role };
         session.pbs_code = { ...session.user, pbs_code };
         session.zonal_code = { ...session.user, zonal_code };
+        session.photoUrl = { ...session.user, photoUrl };
         session.accessToken = { ...session.user, accessToken };
         return session;
       } else {
