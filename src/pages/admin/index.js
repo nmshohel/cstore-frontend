@@ -108,7 +108,7 @@ const AdminPage = ({ itemType, categroys, subcategroys, designations, department
           {formId == 6 && <ManageDesignation designations={designations}></ManageDesignation>}
           {formId == 7 && <AddDepartment></AddDepartment>}
           {formId == 8 && <ManageDepartment departments={departments}></ManageDepartment>}
-          {formId == 9 && <AddUser></AddUser>}
+          {formId == 9 && <AddUser users={users}></AddUser>}
           {formId == 10 && <ManageUsers users={users}></ManageUsers>}
           {formId == 15 && <ZonalTransferRequest zonals={zonals} users={users}></ZonalTransferRequest>}
           {formId == 16 && <ApproveZonalTransfer zonalRequestedUser={zonalRequestedUser}></ApproveZonalTransfer>}

@@ -37,7 +37,7 @@ const formItemLayout = {
     },
 };
 
-const AddUser = () => {
+const AddUser = ({ users }) => {
     const [api, contextHolder] = notification.useNotification();
     const { data: session } = useSession();
     const onFinish = (values) => {

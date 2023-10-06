@@ -139,12 +139,12 @@ const AdminSidebar = ({ children, setZonalCode, setformId }) => {
 
       </Sider>
       <Layout>
-        <Header
+        {/* <Header
           style={{
             padding: 0,
             background: colorBgContainer,
           }}
-        />
+        /> */}
         <Content
           style={{
             margin: '0 16px',

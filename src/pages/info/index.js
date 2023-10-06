@@ -23,13 +23,6 @@ import ManageServicing from '@/components/Pages/Info/ManageServicing';
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  // const session = {
-  //   mobileNo: { mobileNo: '01866115239' },
-  //   pbs_code: { pbs_code: '29' },
-  //   zonal_code: { zonal_code: '2902' },
-  //   role: { role: 'admin' },
-  //   accessToken: { accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbGVObyI6IjAxODY2MTE1MjM5Iiwicm9sZSI6ImFkbWluIiwiem9uYWxDb2RlIjoiMjkwMiIsImNvbXBsYWluQ29kZSI6bnVsbCwic3Vic3RhdGlvbkNvZGUiOm51bGwsInBic0NvZGUiOiIyOSIsImlhdCI6MTY5NTcwMTcwMCwiZXhwIjoxNjk1Nzg4MTAwfQ.JkC00W44xfYEhmZzZH71B89xONgOx0OT9DJu9oUFQYg" },
-  // }
   if (!session || session.role.role !== "admin") {
     return {
       redirect: {

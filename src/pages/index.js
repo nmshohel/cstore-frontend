@@ -19,14 +19,6 @@ import MyRevenueItem from '@/components/Dashboard/MyRevenueItem';
 export async function getServerSideProps(context) {
 
     const session = await getSession(context);
-    // console.log("session dashboard: ",session);
-    // const session = {
-    //     mobileNo: { mobileNo: '01866115239' },
-    //     pbs_code: { pbs_code: '29' },
-    //     zonal_code: { zonal_code: '2902' },
-    //     role: { role: 'admin' },
-    //     accessToken: { accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbGVObyI6IjAxODY2MTE1MjM5Iiwicm9sZSI6ImFkbWluIiwiem9uYWxDb2RlIjoiMjkwMiIsImNvbXBsYWluQ29kZSI6bnVsbCwic3Vic3RhdGlvbkNvZGUiOm51bGwsInBic0NvZGUiOiIyOSIsImlhdCI6MTY5NTU2Mjk2NSwiZXhwIjoxNjk1NjQ5MzY1fQ.Ekk2bkaTPm33H0D0seGOJR4OBMbDQAvM9_9qrtgFBPM" },
-    // }
     if (!session || session?.role?.role !== "admin") {
         return {
             redirect: {
@@ -64,14 +56,8 @@ export async function getServerSideProps(context) {
         const resNotApproveCapitalItem = await fetch(`${process.env.BACKEND_URL}/api/v1/capital-item/not-approve/${session?.pbs_code?.pbs_code}`, getMethod);
         dataNotApproveCapitalItem = await resNotApproveCapitalItem.json();
     }
-    // //console.log(data);
     return {
         props: {
-            // revenueItem:  [],
-            // capitalItem:  [],
-            // notCertifyCapitalItem:[],
-            // notApproveCapitalItem: [],
-            // notReceiveCapitalItem: [],
             revenueItem: dataRevenueItem.data || [],
             capitalItem: dataCapitalItem.data || [],
             notReceivedRevenueItem: dataNotReceivedRevenueItem.data || [],
@@ -84,8 +70,6 @@ export async function getServerSideProps(context) {
     };
 }
 const Categories = ({ context, revenueItem, capitalItem, notReceivedRevenueItem, myCapitalItem, myRevenueItem, notCertifyCapitalItem, notApproveCapitalItem, notReceiveCapitalItem }) => {
-    // console.log(dataRevenueItem, capitalItem, notReceiveCapitalItem)
-    // console.log(myCapitalItem)
     const [api, contextHolder] = notification.useNotification();
     const { data: session } = useSession();
     const [formId, setFormId] = useState("");
@@ -95,9 +79,7 @@ const Categories = ({ context, revenueItem, capitalItem, notReceivedRevenueItem,
         <div>
             {contextHolder}
             <Header>
-                {/* <h1>hi</h1> */}
                 <DashboardSidebar setFormId={setFormId}>
-                    {/* <div></div> */}
                     {formId == 1 && <CertifyCapitalItem notCertifyCapitalItem={notCertifyCapitalItem}></CertifyCapitalItem>}
                     {formId == 2 && <ApproveCapitalItem notApproveCapitalItem={notApproveCapitalItem}></ApproveCapitalItem>}
                     {formId == 5 && <ReceivedCapitalItem notReceiveCapitalItem={notReceiveCapitalItem}></ReceivedCapitalItem>}

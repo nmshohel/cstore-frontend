@@ -70,10 +70,7 @@ const InfoEntrySidebar = ({ children, category, setFormId }) => {
         minHeight: '100vh',
       }}
     >
-      {/* <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-        <div className="demo-logo-vertical" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
-      </Sider> */}
+
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
@@ -99,12 +96,12 @@ const InfoEntrySidebar = ({ children, category, setFormId }) => {
         </Menu>
       </Sider>
       <Layout>
-        <Header
+        {/* <Header
           style={{
             padding: 0,
             background: colorBgContainer,
           }}
-        />
+        /> */}
         <Content
           style={{
             margin: '0 16px',
@@ -120,8 +117,8 @@ const InfoEntrySidebar = ({ children, category, setFormId }) => {
           </Breadcrumb>
           <div
             style={{
-              padding: 24,
-              minHeight: 360,
+              // padding: 24,
+              // minHeight: 360,
               background: colorBgContainer,
             }}
           >
