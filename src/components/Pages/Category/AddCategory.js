@@ -36,7 +36,7 @@ const formItemLayout = {
     },
 };
 
-const AddCategory = ({ itemType }) => {
+const AddCategory = ({ itemType, categroys }) => {
     const [api, contextHolder] = notification.useNotification();
     const { data: session } = useSession();
     const onFinish = (values) => {
@@ -58,8 +58,9 @@ const AddCategory = ({ itemType }) => {
                         message: data?.message,
                     });
                 };
-                openNotificationWithIcon('success')
-
+                openNotificationWithIcon('success');
+                console.log(data.data);
+                categroys.push(data.data);
             });
     };
 

@@ -45,7 +45,7 @@ const config = {
     ],
 };
 
-const AddRevenueItem = ({ itemType, categroys, subcategroys, brands, models, suppliers }) => {
+const AddRevenueItem = ({ revenueItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
     console.log(itemType)
     // cole.log(models)
     const [filteredCategory, setFilteredCategory] = useState([]);
@@ -92,7 +92,7 @@ const AddRevenueItem = ({ itemType, categroys, subcategroys, brands, models, sup
                     });
                 };
                 openNotificationWithIcon('success')
-
+                revenueItem.push(data.data)
             });
     };
 

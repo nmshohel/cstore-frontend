@@ -94,6 +94,10 @@ const ManageUsers = ({ users }) => {
       dataIndex: 'mobileNo',
     },
     {
+      title: 'Role',
+      dataIndex: 'role',
+    },
+    {
       title: 'Name',
       dataIndex: ['employee', 'name'],
       width: '20%',

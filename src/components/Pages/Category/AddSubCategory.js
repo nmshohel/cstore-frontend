@@ -36,7 +36,7 @@ const formItemLayout = {
     },
 };
 
-const AddSubCategory = ({ categroys }) => {
+const AddSubCategory = ({ categroys, subcategroys }) => {
     const [api, contextHolder] = notification.useNotification();
     const { data: session } = useSession();
     const onFinish = (values) => {
@@ -59,7 +59,7 @@ const AddSubCategory = ({ categroys }) => {
                     });
                 };
                 openNotificationWithIcon('success')
-
+                subcategroys.push(data.data);
             });
     };
 

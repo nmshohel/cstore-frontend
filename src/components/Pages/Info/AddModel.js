@@ -58,7 +58,8 @@ const AddModel = ({ brands }) => {
             message: data?.message,
           });
         };
-        openNotificationWithIcon('success')
+        openNotificationWithIcon('success');
+        models.push(data.data)
 
       });
   };

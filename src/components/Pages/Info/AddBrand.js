@@ -36,7 +36,7 @@ const formItemLayout = {
   },
 };
 
-const AddBrand = () => {
+const AddBrand = ({ brands }) => {
   const [api, contextHolder] = notification.useNotification();
   const { data: session } = useSession();
   const onFinish = (values) => {
@@ -59,7 +59,7 @@ const AddBrand = () => {
           });
         };
         openNotificationWithIcon('success')
-
+        brands.push(data.data)
       });
   };
 

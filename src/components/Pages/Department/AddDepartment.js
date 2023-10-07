@@ -36,7 +36,7 @@ const formItemLayout = {
     },
 };
 
-const AddDepartment = () => {
+const AddDepartment = ({ departments }) => {
     const [api, contextHolder] = notification.useNotification();
     const { data: session } = useSession();
     const onFinish = (values) => {
@@ -59,6 +59,7 @@ const AddDepartment = () => {
                     });
                 };
                 openNotificationWithIcon('success')
+                departments.push(data?.data)
 
             });
     };

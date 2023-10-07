@@ -37,7 +37,7 @@ const formItemLayout = {
     },
 };
 
-const AddUser = ({ users }) => {
+const AddUser = ({ users, designations }) => {
     const [api, contextHolder] = notification.useNotification();
     const { data: session } = useSession();
     const onFinish = (values) => {
@@ -56,14 +56,14 @@ const AddUser = ({ users }) => {
         })
             .then((res) => res.json())
             .then((data) => {
-
                 const openNotificationWithIcon = (type) => {
                     api[type]({
                         message: data?.message,
-
                     });
                 };
-                openNotificationWithIcon('success')
+                openNotificationWithIcon('success');
+                console.log(data.data)
+                users.push(data?.data);
 
             });
     };
@@ -101,6 +101,20 @@ const AddUser = ({ users }) => {
                     {roles.map((brand) => (
                         <Option value={brand.value} key={brand.id}>
                             {brand.role}
+                        </Option>
+                    ))}
+                </Select>
+            </Form.Item>
+            <Form.Item label="Designation" name="designation" hasFeedback rules={[
+                {
+                    required: true,
+                    message: 'Please provide a Designation',
+                },
+            ]}>
+                <Select placeholder="Select a Designation" allowClear>
+                    {designations.map((brand) => (
+                        <Option value={brand.designationName} key={brand.id}>
+                            {brand.designationName}
                         </Option>
                     ))}
                 </Select>

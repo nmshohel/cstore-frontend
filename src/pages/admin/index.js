@@ -100,15 +100,15 @@ const AdminPage = ({ itemType, categroys, subcategroys, designations, department
       <Header>
         <AdminSidebar setZonalCode={setZonalCode} setformId={setformId}>
           {/* <PBS zonals={zonals} ccs={ccs}></PBS> */}
-          {formId == 1 && <AddSubCategory categroys={categroys}></AddSubCategory>}
+          {formId == 1 && <AddSubCategory categroys={categroys} subcategroys={subcategroys}></AddSubCategory>}
           {formId == 2 && <ManageSubCategory categroys={categroys} subcategroys={subcategroys}></ManageSubCategory>}
-          {formId == 3 && <AddCategory itemType={itemType}></AddCategory>}
+          {formId == 3 && <AddCategory categroys={categroys} itemType={itemType}></AddCategory>}
           {formId == 4 && <ManageCategory categroys={categroys} itemType={itemType}></ManageCategory>}
-          {formId == 5 && <AddDesignation departments={departments}></AddDesignation>}
+          {formId == 5 && <AddDesignation designations={designations} departments={departments}></AddDesignation>}
           {formId == 6 && <ManageDesignation designations={designations}></ManageDesignation>}
-          {formId == 7 && <AddDepartment></AddDepartment>}
+          {formId == 7 && <AddDepartment departments={departments}></AddDepartment>}
           {formId == 8 && <ManageDepartment departments={departments}></ManageDepartment>}
-          {formId == 9 && <AddUser users={users}></AddUser>}
+          {formId == 9 && <AddUser designations={designations} users={users}></AddUser>}
           {formId == 10 && <ManageUsers users={users}></ManageUsers>}
           {formId == 15 && <ZonalTransferRequest zonals={zonals} users={users}></ZonalTransferRequest>}
           {formId == 16 && <ApproveZonalTransfer zonalRequestedUser={zonalRequestedUser}></ApproveZonalTransfer>}

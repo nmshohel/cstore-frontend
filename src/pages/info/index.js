@@ -121,19 +121,19 @@ const Categories = ({ revenueItem, capitalItem, brands, models, suppliers, itemT
       <Header>
         <InfoEntrySidebar category={category} setFormId={setFormId}>
           {!formId && <FeaturedCategories key={categroys.id} categroys={categroys}></FeaturedCategories>}
-          {formId == 1 && <AddRevenueItem brands={brands} models={models} suppliers={suppliers} itemType={itemType} categroys={categroys} subcategroys={subcategroys}></AddRevenueItem>}
+          {formId == 1 && <AddRevenueItem revenueItem={revenueItem} brands={brands} models={models} suppliers={suppliers} itemType={itemType} categroys={categroys} subcategroys={subcategroys}></AddRevenueItem>}
           {formId == 2 && <ManageRevinueItem revenueItem={revenueItem} brands={brands} models={models} suppliers={suppliers} itemType={itemType} categroys={categroys} subcategroys={subcategroys}></ManageRevinueItem>}
-          {formId == 3 && <AddCapitalItem brands={brands} models={models} suppliers={suppliers} itemType={itemType} categroys={categroys} subcategroys={subcategroys} ></AddCapitalItem>}
+          {formId == 3 && <AddCapitalItem capitalItem={capitalItem} brands={brands} models={models} suppliers={suppliers} itemType={itemType} categroys={categroys} subcategroys={subcategroys} ></AddCapitalItem>}
           {formId == 4 && <ManageCapitalItem capitalItem={capitalItem} brands={brands} models={models} suppliers={suppliers} itemType={itemType} categroys={categroys} subcategroys={subcategroys} ></ManageCapitalItem>}
           {formId == 5 && <IssueCapitalItem users={users} zonals={zonals} notAssignCapitalItem={notAssignCapitalItem}></IssueCapitalItem>}
           {formId == 6 && <IssueRevinueItem zonals={zonals} users={users} capitalItem={capitalItem} notAssignRevenueItem={notAssignRevenueItem}></IssueRevinueItem>}
-          {formId == 7 && <AddBrand></AddBrand>}
+          {formId == 7 && <AddBrand brands={brands}></AddBrand>}
           {formId == 8 && <ManageBrand brands={brands}></ManageBrand>}
-          {formId == 9 && <AddModel brands={brands}></AddModel>}
+          {formId == 9 && <AddModel brands={brands} models={models}></AddModel>}
           {formId == 10 && <ManageModel models={models}></ManageModel>}
-          {formId == 11 && <AddSupplier ></AddSupplier>}
+          {formId == 11 && <AddSupplier suppliers={suppliers}></AddSupplier>}
           {formId == 12 && <ManageSupplier suppliers={suppliers}></ManageSupplier>}
-          {formId == 13 && <AddServicing users={users} capitalItem={capitalItem} revenueItem={revenueItem} suppliers={suppliers} ></AddServicing>}
+          {formId == 13 && <AddServicing servicing={servicing} users={users} capitalItem={capitalItem} revenueItem={revenueItem} suppliers={suppliers} ></AddServicing>}
           {formId == 14 && <ManageServicing servicing={servicing}></ManageServicing>}
         </InfoEntrySidebar>
       </Header>

@@ -36,7 +36,7 @@ const formItemLayout = {
   },
 };
 
-const AddSupplier = () => {
+const AddSupplier = ({ suppliers }) => {
   const [api, contextHolder] = notification.useNotification();
   const { data: session } = useSession();
   const onFinish = (values) => {
@@ -55,7 +55,6 @@ const AddSupplier = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-
         const openNotificationWithIcon = (type) => {
           api[type]({
             message: data?.message,
@@ -63,7 +62,7 @@ const AddSupplier = () => {
           });
         };
         openNotificationWithIcon('success')
-
+        suppliers.push(data.data)
       });
   };
 

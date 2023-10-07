@@ -44,7 +44,7 @@ const config = {
     },
   ],
 };
-const AddServicing = ({ users, capitalItem, revenueItem, suppliers }) => {
+const AddServicing = ({ servicing, users, capitalItem, revenueItem, suppliers }) => {
   console.log(suppliers, revenueItem, capitalItem, users)
   const [api, contextHolder] = notification.useNotification();
   const { data: session } = useSession();
@@ -68,7 +68,7 @@ const AddServicing = ({ users, capitalItem, revenueItem, suppliers }) => {
           });
         };
         openNotificationWithIcon('success')
-
+        servicing.push(data.data)
       });
   };
 

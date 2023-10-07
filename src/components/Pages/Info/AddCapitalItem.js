@@ -45,7 +45,7 @@ const config = {
     ],
 };
 
-const AddCapitalItem = ({ itemType, categroys, subcategroys, brands, models, suppliers }) => {
+const AddCapitalItem = ({ capitalItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
     console.log(itemType)
     // cole.log(models)
     const [filteredCategory, setFilteredCategory] = useState([]);
@@ -92,7 +92,7 @@ const AddCapitalItem = ({ itemType, categroys, subcategroys, brands, models, sup
                     });
                 };
                 openNotificationWithIcon('success')
-
+                capitalItem.push(data.data)
             });
     };
 
