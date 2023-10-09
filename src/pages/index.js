@@ -19,10 +19,10 @@ import MyRevenueItem from '@/components/Dashboard/MyRevenueItem';
 export async function getServerSideProps(context) {
 
     const session = await getSession(context);
-    if (!session || session?.role?.role !== "admin") {
+    if (!session) {
         return {
             redirect: {
-                destination: "/",
+                destination: "/login",
                 permanent: false,
             },
         };

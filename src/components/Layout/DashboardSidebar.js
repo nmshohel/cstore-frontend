@@ -8,10 +8,12 @@ import {
     AppstoreAddOutlined
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { useSession } from 'next-auth/react';
 const { Header, Content, Footer, Sider } = Layout;
 
 const DashboardSidebar = ({ children, category, setFormId }) => {
     const { props } = children;
+    const { data: session } = useSession();
     // //console.log('Category from Adminside', category);
     const [collapsed, setCollapsed] = useState(false);
     const {
@@ -25,31 +27,68 @@ const DashboardSidebar = ({ children, category, setFormId }) => {
             label,
         };
     }
-    const items = [
-        getItem('Certify', 'sub1', <UserOutlined />, [
-            getItem('Capital Item', '1'),
-            // getItem('Revinue Item', '2'),
-        ]),
-        getItem('Approve', 'sub2', <UserOutlined />, [
-            getItem('Capital Item', '2'),
-            // getItem('Revinue Item', '2'),
-        ]),
-        getItem('Transection', 'sub3', <UserOutlined />, [
-            getItem('Demand Capital Item', '3'),
-            getItem('Demand Revinue Item', '4'),
-            getItem('Issue To Me Capital Item', '5'),
-            getItem('Issue To Me Revenue Item', '6'),
-        ]),
-        getItem('My Products', 'sub4', <UserOutlined />, [
-            getItem('Capital Item', '7'),
-            getItem('Revinue Item', '8'),
-        ]),
-        getItem('Used Item', 'sub5', <UserOutlined />, [
-            getItem('Capital Item', '9'),
-            getItem('Revinue Item', '10'),
-        ]),
-        // getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    ];
+    let items = "";
+    if (session?.role?.role == 'storeHead') {
+        items = [
+            getItem('Certify', 'sub1', <UserOutlined />, [
+                getItem('Capital Item', '1'),
+            ]),
+            getItem('Transection', 'sub3', <UserOutlined />, [
+                getItem('Demand Capital Item', '3'),
+                getItem('Demand Revinue Item', '4'),
+                getItem('Issue To Me Capital Item', '5'),
+                getItem('Issue To Me Revenue Item', '6'),
+            ]),
+            getItem('My Products', 'sub4', <UserOutlined />, [
+                getItem('Capital Item', '7'),
+                getItem('Revinue Item', '8'),
+            ]),
+            getItem('Used Item', 'sub5', <UserOutlined />, [
+                getItem('Capital Item', '9'),
+                getItem('Revinue Item', '10'),
+            ]),
+        ];
+    }
+    if (session?.role?.role == 'officeHead') {
+        items = [
+            getItem('Approve', 'sub2', <UserOutlined />, [
+                getItem('Capital Item', '2'),
+            ]),
+            getItem('Transection', 'sub3', <UserOutlined />, [
+                getItem('Demand Capital Item', '3'),
+                getItem('Demand Revinue Item', '4'),
+                getItem('Issue To Me Capital Item', '5'),
+                getItem('Issue To Me Revenue Item', '6'),
+            ]),
+            getItem('My Products', 'sub4', <UserOutlined />, [
+                getItem('Capital Item', '7'),
+                getItem('Revinue Item', '8'),
+            ]),
+            getItem('Used Item', 'sub5', <UserOutlined />, [
+                getItem('Capital Item', '9'),
+                getItem('Revinue Item', '10'),
+            ]),
+        ];
+    }
+    else {
+        items = [
+            getItem('Transection', 'sub3', <UserOutlined />, [
+                getItem('Demand Capital Item', '3'),
+                getItem('Demand Revinue Item', '4'),
+                getItem('Issue To Me Capital Item', '5'),
+                getItem('Issue To Me Revenue Item', '6'),
+            ]),
+            getItem('My Products', 'sub4', <UserOutlined />, [
+                getItem('Capital Item', '7'),
+                getItem('Revinue Item', '8'),
+            ]),
+            getItem('Used Item', 'sub5', <UserOutlined />, [
+                getItem('Capital Item', '9'),
+                getItem('Revinue Item', '10'),
+            ]),
+        ];
+    }
+
 
     const handleAdminSidebarClick = (reportKey) => {
         // Here you can define the action you want to perform when a report item is clicked.

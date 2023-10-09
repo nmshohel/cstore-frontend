@@ -23,7 +23,8 @@ import ManageServicing from '@/components/Pages/Info/ManageServicing';
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  if (!session || session.role.role !== "admin") {
+
+  if (!session || !["admin", "incharge"].includes(session.role.role)) {
     return {
       redirect: {
         destination: "/dashboard",
@@ -31,6 +32,7 @@ export async function getServerSideProps(context) {
       },
     };
   }
+
   const accessToken = session?.accessToken?.accessToken;
   const getMethod = {
     method: "GET",

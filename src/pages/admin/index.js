@@ -27,24 +27,15 @@ import ZonalTransferRequest from "@/components/Pages/Users/ZonalTransferRequest"
 import ApproveZonalTransfer from "@/components/Pages/Users/ApproveZonalTransfer";
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  // const session = {
-  //   mobileNo: { mobileNo: '01866115239' },
-  //   pbs_code: { pbs_code: '29' },
-  //   zonal_code: { zonal_code: '2902' },
-  //   role: { role: 'admin' },
-  //   accessToken: { accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbGVObyI6IjAxODY2MTE1MjM5Iiwicm9sZSI6ImFkbWluIiwiem9uYWxDb2RlIjoiMjkwMiIsImNvbXBsYWluQ29kZSI6bnVsbCwic3Vic3RhdGlvbkNvZGUiOm51bGwsInBic0NvZGUiOiIyOSIsImlhdCI6MTY5NTU2Mjk2NSwiZXhwIjoxNjk1NjQ5MzY1fQ.Ekk2bkaTPm33H0D0seGOJR4OBMbDQAvM9_9qrtgFBPM" },
-  // }
-  console.log("Session", session);
-  // if (!session || session.role.role !== "admin") {
-  //   return {
-  //     redirect: {
-  //       destination: "/",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
 
-
+  if (!session || !["admin", "super_admin"].includes(session.role.role)) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
   const accessToken = session?.accessToken?.accessToken;
   const getMethod = {
     method: "GET",

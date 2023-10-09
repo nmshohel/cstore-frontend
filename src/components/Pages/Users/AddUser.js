@@ -68,8 +68,10 @@ const AddUser = ({ users, designations }) => {
             });
     };
     const roles = [
-        { id: 4, role: 'employee', value: 'user' },
-        // { id: 4, role: 'employee', value: 'employee' },
+        { id: 7, role: 'employee', value: 'user' },
+        { id: 6, role: 'Store Incharge', value: 'incharge' },
+        { id: 5, role: 'Store Head', value: 'storeHead' },
+        { id: 4, role: 'Office Head', value: 'officeHead' },
         { id: 3, role: 'Zonal Admin', value: 'zonaladmin' },
         { id: 2, role: 'Admin', value: 'admin' },
         { id: 1, role: 'Super Admin', value: 'superadmin' },
