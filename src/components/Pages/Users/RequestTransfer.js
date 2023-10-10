@@ -91,7 +91,7 @@ const RequestTransfer = ({ users }) => {
     const handleRequest = (mobileNo) => {
         ////console.log(key);
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/user/pbs-posting-request/${mobileNo}`, {
+        fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/user/pbs-posting-request/${mobileNo}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -199,7 +199,7 @@ const RequestTransfer = ({ users }) => {
         // Perform your search action here using the searchText state
         //console.log('Searching for:', searchText);
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/user/user/${searchText}`, {
+        fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/user/user/${searchText}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json",

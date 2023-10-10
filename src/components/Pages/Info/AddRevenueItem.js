@@ -75,7 +75,7 @@ const AddRevenueItem = ({ revenueItem, itemType, categroys, subcategroys, brands
         const withvalues = { ...values, pbsCode, addByMobileNo };
         //console.log(withvalues)
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/revenue-item/create-revenue-item`, {
+        fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/revenue-item/create-revenue-item`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

@@ -45,7 +45,7 @@ const AddSupplier = ({ suppliers }) => {
     const withvalues = { ...values, pbsCode };
     //console.log(withvalues);
     const accessToken = session?.accessToken?.accessToken;
-    fetch(`http://localhost:5000/api/v1/supplier/create-supplier`, {
+    fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/supplier/create-supplier`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

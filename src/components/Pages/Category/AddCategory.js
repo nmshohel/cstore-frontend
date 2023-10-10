@@ -42,7 +42,7 @@ const AddCategory = ({ itemType, categroys }) => {
     const onFinish = (values) => {
         //console.log('Received values:', values);
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/category/create-category`, {
+        fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/category/create-category`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

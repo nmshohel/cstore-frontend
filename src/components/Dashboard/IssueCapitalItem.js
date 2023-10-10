@@ -301,7 +301,7 @@ const IssueCapitalItem = ({ itemType, categroys, subcategroys, brands, models, s
         //console.log(values)
 
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/capital-item/assign-capital-item/${values?.id}`, {
+        fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/capital-item/assign-capital-item/${values?.id}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

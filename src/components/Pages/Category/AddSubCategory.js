@@ -42,7 +42,7 @@ const AddSubCategory = ({ categroys, subcategroys }) => {
     const onFinish = (values) => {
         //console.log('Received values:', values);
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/sub-category/create-sub-category`, {
+        fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/sub-category/create-sub-category`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

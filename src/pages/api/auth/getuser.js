@@ -2,7 +2,7 @@
 async function yourDatabaseQueryToFetchUserData(mobileNo, password) {
   try {
     const options = { mobileNo, password }
-    const resUser = await fetch(`http://localhost:5000/api/v1/auth/login`, {
+    const resUser = await fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/auth/login`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

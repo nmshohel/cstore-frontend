@@ -320,7 +320,7 @@ const ManageCapitalItem = ({ capitalItem, itemType, categroys, subcategroys, bra
     const withvalues = { ...values, pbsCode, addByMobileNo, purchasedate };
     //console.log(withvalues);
     const accessToken = session?.accessToken?.accessToken;
-    fetch(`http://localhost:5000/api/v1/capital-item/${values?.id}`, {
+    fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/capital-item/${values?.id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

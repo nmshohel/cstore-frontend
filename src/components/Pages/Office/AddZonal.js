@@ -44,7 +44,7 @@ const AddZonal = ({ brands }) => {
     const pbsCode = session?.pbs_code?.pbs_code;
     const accessToken = session?.accessToken?.accessToken;
     const withvalues = { ...values, pbsCode };
-    fetch(`http://localhost:5000/api/v1/zonal/create-zonal`, {
+    fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/zonal/create-zonal`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -311,7 +311,7 @@ const MyRevenueItem = ({ myRevenueItem, itemType, categroys, subcategroys, brand
         const withvalues = { approveByMobileNo };
         //console.log(withvalues);
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/capital-item/approve-capital-item/${values?.id}`, {
+        fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/capital-item/approve-capital-item/${values?.id}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

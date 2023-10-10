@@ -301,7 +301,7 @@ const IssueRevinueItem = ({ capitalItem, itemType, categroys, subcategroys, bran
         //console.log(values)
         const { assignToMobileNo, identificationNo, zonalCode } = values;
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/revenue-item/assign-revenue-item/${values?.id}`, {
+        fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/revenue-item/assign-revenue-item/${values?.id}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

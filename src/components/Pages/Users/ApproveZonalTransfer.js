@@ -90,7 +90,7 @@ const ApproveZonalTransfer = ({ zonalRequestedUser }) => {
     const { data: session } = useSession();
     const handleRelease = (mobileNo) => {
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/user/zonal-posting-request-approve/${mobileNo}`, {
+        fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/user/zonal-posting-request-approve/${mobileNo}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

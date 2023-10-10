@@ -343,7 +343,7 @@ const ZonalTransferRequest = ({ itemType, categroys, subcategroys, brands, model
         //console.log(values)
         const { mobileNo, zonalCode } = values;
         const accessToken = session?.accessToken?.accessToken;
-        fetch(`http://localhost:5000/api/v1/user/zonal-posting-request`, {
+        fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/user/zonal-posting-request`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

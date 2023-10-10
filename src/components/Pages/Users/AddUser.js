@@ -46,7 +46,7 @@ const AddUser = ({ users, designations }) => {
         const accessToken = session?.accessToken?.accessToken;
         const withvalues = { ...values, pbsCode };
         //console.log(withvalues);
-        fetch(`http://localhost:5000/api/v1/user/create-user`, {
+        fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/user/create-user`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

@@ -42,7 +42,7 @@ const AddBrand = ({ brands }) => {
   const onFinish = (values) => {
     //console.log('Received values:', values);
     const accessToken = session?.accessToken?.accessToken;
-    fetch(`http://localhost:5000/api/v1/brand/create-brand`, {
+    fetch(`https://computer-management-backend-iiscez3bd-nmshohel.vercel.app/api/v1/brand/create-brand`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
