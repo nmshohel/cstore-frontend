@@ -14,7 +14,7 @@ export default PartsDetails;
 //   const { params } = context;
 //   ////console.log(params);
 
-//   const res = await fetch(`http://localhost:3000/api/products?category=${params?.category}`);
+//   const res = await fetch(`https://pbsstore.vercel.app/api/products?category=${params?.category}`);
 //   const allProducts = await res.json();
 //   ////console.log(allProducts);
 
@@ -29,7 +29,7 @@ export default PartsDetails;
 //   const { params } = context;
 //   ////console.log(params);
 
-//   const res = await fetch(`http://localhost:3000/api/products?category=${params?.category}`);
+//   const res = await fetch(`https://pbsstore.vercel.app/api/products?category=${params?.category}`);
 //   const data = await res.json();
 //   ////console.log(data);
 
@@ -48,7 +48,7 @@ export default PartsDetails;
 //   const category = params?.category;
 //   // Replace this with the actual logic to fetch data based on the category
 //   // For example, you can use your API endpoint here
-//   const res = await fetch(`http://localhost:3000/api/products?category=${category}`);
+//   const res = await fetch(`https://pbsstore.vercel.app/api/products?category=${category}`);
 //   const data = await res.json();
 
 //   return {

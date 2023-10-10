@@ -5,21 +5,21 @@ import styles from "@/styles/Login.module.css";
 import { signIn } from "next-auth/react";
 
 const LoginPage = () => {
-  
+
   return (
     <div>
       <Head>
         <title>Users Login</title>
       </Head>
       <div className={styles.form}>
-        
+
         <h3>LOGIN</h3>
         <div className={styles.social_icons}>
-          <GoogleOutlined onClick={()=>signIn("google",{
-            callbackUrl:"http://localhost:3000/"
-          })}/>
+          <GoogleOutlined onClick={() => signIn("google", {
+            callbackUrl: "https://pbsstore.vercel.app/"
+          })} />
           {/* <GithubOutlined onClick={()=>signIn("github",{
-            callbackUrl:"http://localhost:3000/"
+            callbackUrl:"https://pbsstore.vercel.app/"
           })}/> */}
         </div>
         <hr />
