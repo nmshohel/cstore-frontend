@@ -83,7 +83,7 @@ const EditableCell = ({
     return <td {...restProps}>{childNode}</td>;
 };
 const ApproveZonalTransfer = ({ zonalRequestedUser }) => {
-    console.log(zonalRequestedUser);
+    //console.log(zonalRequestedUser);
     const [api, contextHolder] = notification.useNotification();
     const [dataSource, setDataSource] = useState(zonalRequestedUser);
     const [count, setCount] = useState(2);

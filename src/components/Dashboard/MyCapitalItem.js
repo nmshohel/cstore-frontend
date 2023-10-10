@@ -93,12 +93,12 @@ const config = {
     ],
 };
 const MyCapitalItem = ({ myCapitalItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
-    // console.log(myCapitalItem);
+    //console.log(myCapitalItem);
     const { data: session } = useSession();
     const [filteredCategory, setFilteredCategory] = useState([]);
     const [filteredSubCategory, setFilteredSubCategory] = useState([]);
     const [filteredModel, setModel] = useState([]);
-    console.log(filteredCategory, filteredSubCategory)
+    //console.log(filteredCategory, filteredSubCategory)
     const handleCategory = (key) => {
         const newData = categroys.filter((item) => item.itemTypeId == key);
         setFilteredCategory(newData);
@@ -305,11 +305,11 @@ const MyCapitalItem = ({ myCapitalItem, itemType, categroys, subcategroys, brand
     };
     const [api, contextHolder] = notification.useNotification();
     const onFinish = (values) => {
-        console.log(values)
+        //console.log(values)
         // const pbsCode = session?.pbs_code?.pbs_code;
         const approveByMobileNo = session?.mobileNo?.mobileNo;
         const withvalues = { approveByMobileNo };
-        console.log(withvalues);
+        //console.log(withvalues);
         const accessToken = session?.accessToken?.accessToken;
         fetch(`http://localhost:5000/api/v1/capital-item/approve-capital-item/${values?.id}`, {
             method: "POST",

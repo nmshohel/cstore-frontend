@@ -3,6 +3,8 @@ import { Layout, Menu, Switch, Button, Drawer, Row, Col } from "antd";
 import {
   HomeOutlined,
   MenuOutlined,
+  DashboardOutlined,
+  FileAddOutlined,
   FileProtectOutlined,
   UsergroupAddOutlined
 } from "@ant-design/icons";
@@ -15,7 +17,7 @@ const ResponsiveNav = ({ children }) => {
 
   const { data: session } = useSession();
 
-  console.log(session);
+  //console.log(session);
   const [visible, setVisible] = useState(false);
   const [theme, setTheme] = useState('light');
   const [current, setCurrent] = useState('1');
@@ -30,7 +32,7 @@ const ResponsiveNav = ({ children }) => {
     setVisible(false);
   };
   const menu = <>
-    <Menu.Item key="3" icon={<FileProtectOutlined />}>
+    <Menu.Item key="3" icon={<DashboardOutlined />}>
       <Link style={{ textDecoration: 'none' }} href="/">
         My Products
       </Link>

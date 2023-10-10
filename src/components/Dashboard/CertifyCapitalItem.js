@@ -93,12 +93,12 @@ const config = {
     ],
 };
 const CertifyCapitalItem = ({ notCertifyCapitalItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
-    console.log(notCertifyCapitalItem);
+    //console.log(notCertifyCapitalItem);
     const { data: session } = useSession();
     const [filteredCategory, setFilteredCategory] = useState([]);
     const [filteredSubCategory, setFilteredSubCategory] = useState([]);
     const [filteredModel, setModel] = useState([]);
-    console.log(filteredCategory, filteredSubCategory)
+    //console.log(filteredCategory, filteredSubCategory)
     const handleCategory = (key) => {
         const newData = categroys.filter((item) => item.itemTypeId == key);
         setFilteredCategory(newData);
@@ -305,11 +305,11 @@ const CertifyCapitalItem = ({ notCertifyCapitalItem, itemType, categroys, subcat
     };
     const [api, contextHolder] = notification.useNotification();
     const onFinish = (values) => {
-        console.log(values)
+        //console.log(values)
         // const pbsCode = session?.pbs_code?.pbs_code;
         const certifiedByMobileNo = session?.mobileNo?.mobileNo;
         const withvalues = { certifiedByMobileNo };
-        console.log(withvalues);
+        //console.log(withvalues);
         const accessToken = session?.accessToken?.accessToken;
         fetch(`http://localhost:5000/api/v1/capital-item/certify-capital-item/${values?.id}`, {
             method: "POST",

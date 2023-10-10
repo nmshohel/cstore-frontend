@@ -46,7 +46,7 @@ const config = {
 };
 
 const AddRevenueItem = ({ revenueItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
-    console.log(itemType)
+    //console.log(itemType)
     // cole.log(models)
     const [filteredCategory, setFilteredCategory] = useState([]);
     const [filteredSubCategory, setFilteredSubCategory] = useState([]);
@@ -69,11 +69,11 @@ const AddRevenueItem = ({ revenueItem, itemType, categroys, subcategroys, brands
     const [api, contextHolder] = notification.useNotification();
     const { data: session } = useSession();
     const onFinish = (values) => {
-        console.log('Received values:', values);
+        //console.log('Received values:', values);
         const pbsCode = session?.pbs_code?.pbs_code;
         const addByMobileNo = session?.mobileNo?.mobileNo;
         const withvalues = { ...values, pbsCode, addByMobileNo };
-        console.log(withvalues)
+        //console.log(withvalues)
         const accessToken = session?.accessToken?.accessToken;
         fetch(`http://localhost:5000/api/v1/revenue-item/create-revenue-item`, {
             method: "POST",

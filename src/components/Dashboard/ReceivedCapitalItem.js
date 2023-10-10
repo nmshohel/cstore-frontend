@@ -93,12 +93,12 @@ const config = {
     ],
 };
 const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
-    console.log(notReceiveCapitalItem);
+    //console.log(notReceiveCapitalItem);
     const { data: session } = useSession();
     const [filteredCategory, setFilteredCategory] = useState([]);
     const [filteredSubCategory, setFilteredSubCategory] = useState([]);
     const [filteredModel, setModel] = useState([]);
-    console.log(filteredCategory, filteredSubCategory)
+    //console.log(filteredCategory, filteredSubCategory)
     const handleCategory = (key) => {
         const newData = categroys?.filter((item) => item.itemTypeId == key);
         setFilteredCategory(newData);
@@ -305,11 +305,11 @@ const ReceivedCapitalItem = ({ notReceiveCapitalItem, capitalItem, itemType, cat
     };
     const [api, contextHolder] = notification.useNotification();
     const onFinish = (values) => {
-        console.log(values)
+        //console.log(values)
         const pbsCode = session?.pbs_code?.pbs_code;
         const receivedByMobileNo = session?.mobileNo?.mobileNo;
         const withvalues = { ...values, pbsCode, receivedByMobileNo };
-        console.log(withvalues);
+        //console.log(withvalues);
         const accessToken = session?.accessToken?.accessToken;
         fetch(`http://localhost:5000/api/v1/capital-item/receive-capital-item/${values?.id}`, {
             method: "POST",

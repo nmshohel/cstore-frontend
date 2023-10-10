@@ -97,12 +97,12 @@ const config = {
   ],
 };
 const ManageCapitalItem = ({ capitalItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
-  console.log(capitalItem);
+  //console.log(capitalItem);
   const { data: session } = useSession();
   const [filteredCategory, setFilteredCategory] = useState([]);
   const [filteredSubCategory, setFilteredSubCategory] = useState([]);
   const [filteredModel, setModel] = useState([]);
-  console.log(filteredCategory, filteredSubCategory)
+  //console.log(filteredCategory, filteredSubCategory)
   const handleCategory = (key) => {
     const newData = categroys.filter((item) => item.itemTypeId == key);
     setFilteredCategory(newData);
@@ -201,7 +201,7 @@ const ManageCapitalItem = ({ capitalItem, itemType, categroys, subcategroys, bra
       render: (_, record) =>
         dataSource.length >= 1 ? (
           <Popconfirm title="Sure to Update?" onConfirm={() => showModal(record)}>
-            {record?.certifiedByMobileNo===null &&<a><EditFilled /></a>}
+            {record?.certifiedByMobileNo === null && <a><EditFilled /></a>}
           </Popconfirm>
         ) : null,
     },
@@ -210,8 +210,8 @@ const ManageCapitalItem = ({ capitalItem, itemType, categroys, subcategroys, bra
       dataIndex: 'operation',
       render: (_, record) =>
         dataSource.length >= 1 ? (
-           <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record?.id)}>
-           {record?.certifiedByMobileNo===null && <a>< DeleteFilled/></a>}
+          <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record?.id)}>
+            {record?.certifiedByMobileNo === null && <a>< DeleteFilled /></a>}
           </Popconfirm>
         ) : null,
     },
@@ -313,12 +313,12 @@ const ManageCapitalItem = ({ capitalItem, itemType, categroys, subcategroys, bra
   };
   const [api, contextHolder] = notification.useNotification();
   const onFinish = (values) => {
-    // console.log(values)
+    ////console.log(values)
     const pbsCode = session?.pbs_code?.pbs_code;
     const addByMobileNo = session?.mobileNo?.mobileNo;
     const purchasedate = values.purchasedate ? values.purchasedate.format('YYYY-MM-DD') : null;
     const withvalues = { ...values, pbsCode, addByMobileNo, purchasedate };
-    console.log(withvalues);
+    //console.log(withvalues);
     const accessToken = session?.accessToken?.accessToken;
     fetch(`http://localhost:5000/api/v1/capital-item/${values?.id}`, {
       method: "PATCH",

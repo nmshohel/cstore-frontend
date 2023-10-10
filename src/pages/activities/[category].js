@@ -1,10 +1,10 @@
 import React from 'react';
 
 const PartsDetails = () => {
-    return (
- <h1>This is Activities</h1>
-      // <AllProducts allProducts={allProducts}></AllProducts>
-    );
+  return (
+    <h1>This is Activities</h1>
+    // <AllProducts allProducts={allProducts}></AllProducts>
+  );
 };
 
 export default PartsDetails;
@@ -12,11 +12,11 @@ export default PartsDetails;
 
 // export const getStaticPaths = async (context) => {
 //   const { params } = context;
-//   // console.log(params);
+//   ////console.log(params);
 
 //   const res = await fetch(`http://localhost:3000/api/products?category=${params?.category}`);
 //   const allProducts = await res.json();
-//   // console.log(allProducts);
+//   ////console.log(allProducts);
 
 //   const paths = allProducts.data.map((part) => ({
 //     params: { category: part.id },
@@ -27,11 +27,11 @@ export default PartsDetails;
 
 // export const getStaticProps = async (context) => {
 //   const { params } = context;
-//   // console.log(params);
+//   ////console.log(params);
 
 //   const res = await fetch(`http://localhost:3000/api/products?category=${params?.category}`);
 //   const data = await res.json();
-//   // console.log(data);
+//   ////console.log(data);
 
 //   return {
 //     props: {

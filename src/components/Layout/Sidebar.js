@@ -4,7 +4,7 @@ import {
   FileOutlined,
   PieChartOutlined,
   TeamOutlined,
-  UserOutlined,
+  ProfileOutlined,
   BuildOutlined
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
@@ -29,7 +29,7 @@ const Sidebar = ({ children, setZonalCode, setFormId }) => {
   }
   const items = [
 
-    getItem('User', 'sub1', <UserOutlined />, [
+    getItem('User Profile', 'sub1', <ProfileOutlined />, [
       getItem('Update Profile', '1'),
       getItem('Change Password', '2'),
     ]),

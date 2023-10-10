@@ -59,7 +59,7 @@ const AddDesignation = ({ departments, designations }) => {
                     });
                 };
                 openNotificationWithIcon('success')
-                console.log(data.data);
+                //console.log(data.data);
                 designations.push(data.data)
             });
     };

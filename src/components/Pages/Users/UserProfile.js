@@ -38,7 +38,7 @@ const formItemLayout = {
 };
 
 const UserProfile = ({ employee }) => {
-    console.log(employee)
+    //console.log(employee)
     const [api, contextHolder] = notification.useNotification();
     // const [dataSource, setDataSource] = useState(employee);
     const { data: session } = useSession();
@@ -59,7 +59,7 @@ const UserProfile = ({ employee }) => {
         }
     }, [employee, form]);
     const onFinish = (values) => {
-        console.log('Received values:', values);
+        //console.log('Received values:', values);
         const accessToken = session?.accessToken?.accessToken;
         //console.log(withvalues);
         fetch(`http://localhost:5000/api/v1/employee/${values.mobileNo}`, {

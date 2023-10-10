@@ -37,8 +37,8 @@ export async function getServerSideProps(context) {
   };
 }
 const Profile = ({ employee }) => {
-  // console.log(dataRevenueItem, capitalItem, notReceiveCapitalItem)
-  // console.log(myCapitalItem)
+  ////console.log(dataRevenueItem, capitalItem, notReceiveCapitalItem)
+  ////console.log(myCapitalItem)
   const [api, contextHolder] = notification.useNotification();
   const { data: session } = useSession();
   const [formId, setFormId] = useState("");

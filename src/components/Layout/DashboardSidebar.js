@@ -5,7 +5,9 @@ import {
     PieChartOutlined,
     TeamOutlined,
     UserOutlined,
-    AppstoreAddOutlined
+    DeleteRowOutlined,
+    TransactionOutlined,
+    ContainerOutlined
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import { useSession } from 'next-auth/react';
@@ -33,17 +35,17 @@ const DashboardSidebar = ({ children, category, setFormId }) => {
             getItem('Certify', 'sub1', <UserOutlined />, [
                 getItem('Capital Item', '1'),
             ]),
-            getItem('Transection', 'sub3', <UserOutlined />, [
+            getItem('Transection', 'sub3', <TransactionOutlined />, [
                 getItem('Demand Capital Item', '3'),
                 getItem('Demand Revinue Item', '4'),
                 getItem('Issue To Me Capital Item', '5'),
                 getItem('Issue To Me Revenue Item', '6'),
             ]),
-            getItem('My Products', 'sub4', <UserOutlined />, [
+            getItem('My Products', 'sub4', <ContainerOutlined />, [
                 getItem('Capital Item', '7'),
                 getItem('Revinue Item', '8'),
             ]),
-            getItem('Used Item', 'sub5', <UserOutlined />, [
+            getItem('Used Item', 'sub5', <DeleteRowOutlined />, [
                 getItem('Capital Item', '9'),
                 getItem('Revinue Item', '10'),
             ]),
@@ -54,17 +56,17 @@ const DashboardSidebar = ({ children, category, setFormId }) => {
             getItem('Approve', 'sub2', <UserOutlined />, [
                 getItem('Capital Item', '2'),
             ]),
-            getItem('Transection', 'sub3', <UserOutlined />, [
+            getItem('Transection', 'sub3', <TransactionOutlined />, [
                 getItem('Demand Capital Item', '3'),
                 getItem('Demand Revinue Item', '4'),
                 getItem('Issue To Me Capital Item', '5'),
                 getItem('Issue To Me Revenue Item', '6'),
             ]),
-            getItem('My Products', 'sub4', <UserOutlined />, [
+            getItem('My Products', 'sub4', <ContainerOutlined />, [
                 getItem('Capital Item', '7'),
                 getItem('Revinue Item', '8'),
             ]),
-            getItem('Used Item', 'sub5', <UserOutlined />, [
+            getItem('Used Item', 'sub5', <DeleteRowOutlined />, [
                 getItem('Capital Item', '9'),
                 getItem('Revinue Item', '10'),
             ]),
@@ -72,17 +74,17 @@ const DashboardSidebar = ({ children, category, setFormId }) => {
     }
     else {
         items = [
-            getItem('Transection', 'sub3', <UserOutlined />, [
+            getItem('Transection', 'sub3', <TransactionOutlined />, [
                 getItem('Demand Capital Item', '3'),
                 getItem('Demand Revinue Item', '4'),
                 getItem('Issue To Me Capital Item', '5'),
                 getItem('Issue To Me Revenue Item', '6'),
             ]),
-            getItem('My Products', 'sub4', <UserOutlined />, [
+            getItem('My Products', 'sub4', <ContainerOutlined />, [
                 getItem('Capital Item', '7'),
                 getItem('Revinue Item', '8'),
             ]),
-            getItem('Used Item', 'sub5', <UserOutlined />, [
+            getItem('Used Item', 'sub5', <DeleteRowOutlined />, [
                 getItem('Capital Item', '9'),
                 getItem('Revinue Item', '10'),
             ]),

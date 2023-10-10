@@ -62,7 +62,7 @@ const AddUser = ({ users, designations }) => {
                     });
                 };
                 openNotificationWithIcon('success');
-                console.log(data.data)
+                //console.log(data.data)
                 users.push(data?.data);
 
             });

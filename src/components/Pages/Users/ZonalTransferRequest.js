@@ -93,14 +93,14 @@ const config = {
     ],
 };
 const ZonalTransferRequest = ({ itemType, categroys, subcategroys, brands, models, suppliers, notAssignCapitalItem, users, zonals }) => {
-    console.log(zonals);
-    console.log(users);
+    //console.log(zonals);
+    //console.log(users);
     const { data: session } = useSession();
     // const [filteredCategory, setFilteredCategory] = useState([]);
     // const [filteredSubCategory, setFilteredSubCategory] = useState([]);
     // const [filteredUsers, setFilteredUsers] = useState([]);
     // const [filteredModel, setModel] = useState([]);
-    // console.log(filteredCategory, filteredSubCategory)
+    ////console.log(filteredCategory, filteredSubCategory)
     // const handleCategory = (key) => {
     //     const newData = categroys?.filter((item) => item.itemTypeId == key);
     //     setFilteredCategory(newData);
@@ -130,7 +130,7 @@ const ZonalTransferRequest = ({ itemType, categroys, subcategroys, brands, model
     //     const zonalNames = Array.from(new Set(notAssignCapitalItem?.map(item => item?.zonals?.zonalName)));
     //     setdistinctZonals(zonalNames);
     // }, [notAssignCapitalItem]);
-    console.log(distinctCategories);
+    //console.log(distinctCategories);
     const [dataSource, setDataSource] = useState(users);
     const [count, setCount] = useState(2);
     const handleDelete = (key) => {
@@ -311,7 +311,7 @@ const ZonalTransferRequest = ({ itemType, categroys, subcategroys, brands, model
         }
     }, [selectedUser, form]);
     const showModal = (record) => {
-        console.log(record)
+        //console.log(record)
         setSelectedUser(record);
         setOpen(true);
     };
@@ -340,7 +340,7 @@ const ZonalTransferRequest = ({ itemType, categroys, subcategroys, brands, model
     };
     const [api, contextHolder] = notification.useNotification();
     const onFinish = (values) => {
-        console.log(values)
+        //console.log(values)
         const { mobileNo, zonalCode } = values;
         const accessToken = session?.accessToken?.accessToken;
         fetch(`http://localhost:5000/api/v1/user/zonal-posting-request`, {

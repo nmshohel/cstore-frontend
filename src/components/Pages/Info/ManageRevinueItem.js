@@ -112,12 +112,12 @@ const config = {
 };
 
 const ManageCapitalItem = ({ revenueItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
-    console.log(revenueItem);
+    //console.log(revenueItem);
     const { data: session } = useSession();
     const [filteredCategory, setFilteredCategory] = useState([]);
     const [filteredSubCategory, setFilteredSubCategory] = useState([]);
     const [filteredModel, setModel] = useState([]);
-    console.log(filteredCategory, filteredSubCategory)
+    //console.log(filteredCategory, filteredSubCategory)
     const handleCategory = (key) => {
         const newData = categroys.filter((item) => item.itemTypeId == key);
         setFilteredCategory(newData);
@@ -307,12 +307,12 @@ const ManageCapitalItem = ({ revenueItem, itemType, categroys, subcategroys, bra
 
     const [api, contextHolder] = notification.useNotification();
     const onFinish = (values) => {
-        // console.log(values)
+        ////console.log(values)
         const pbsCode = session?.pbs_code?.pbs_code;
         const addByMobileNo = session?.mobileNo?.mobileNo;
         const purchasedate = values.purchasedate ? values.purchasedate.format('YYYY-MM-DD') : null;
         const withvalues = { ...values, pbsCode, addByMobileNo, purchasedate };
-        console.log(withvalues);
+        //console.log(withvalues);
         const accessToken = session?.accessToken?.accessToken;
         fetch(`http://localhost:5000/api/v1/revenue-item/${values?.id}`, {
             method: "PATCH",

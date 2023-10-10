@@ -93,14 +93,14 @@ const config = {
     ],
 };
 const IssueCapitalItem = ({ itemType, categroys, subcategroys, brands, models, suppliers, notAssignCapitalItem, users, zonals }) => {
-    console.log(zonals);
-    console.log(users);
+    //console.log(zonals);
+    //console.log(users);
     const { data: session } = useSession();
     const [filteredCategory, setFilteredCategory] = useState([]);
     const [filteredSubCategory, setFilteredSubCategory] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [filteredModel, setModel] = useState([]);
-    console.log(filteredCategory, filteredSubCategory)
+    //console.log(filteredCategory, filteredSubCategory)
     const handleCategory = (key) => {
         const newData = categroys?.filter((item) => item.itemTypeId == key);
         setFilteredCategory(newData);
@@ -298,7 +298,7 @@ const IssueCapitalItem = ({ itemType, categroys, subcategroys, brands, models, s
     };
     const [api, contextHolder] = notification.useNotification();
     const onFinish = (values) => {
-        console.log(values)
+        //console.log(values)
 
         const accessToken = session?.accessToken?.accessToken;
         fetch(`http://localhost:5000/api/v1/capital-item/assign-capital-item/${values?.id}`, {

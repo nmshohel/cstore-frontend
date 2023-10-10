@@ -89,7 +89,7 @@ const RequestTransfer = ({ users }) => {
     const [count, setCount] = useState(2);
     const [api, contextHolder] = notification.useNotification();
     const handleRequest = (mobileNo) => {
-        // console.log(key);
+        ////console.log(key);
         const accessToken = session?.accessToken?.accessToken;
         fetch(`http://localhost:5000/api/v1/user/pbs-posting-request/${mobileNo}`, {
             method: "POST",
@@ -197,7 +197,7 @@ const RequestTransfer = ({ users }) => {
 
     const handleSearch = async () => {
         // Perform your search action here using the searchText state
-        console.log('Searching for:', searchText);
+        //console.log('Searching for:', searchText);
         const accessToken = session?.accessToken?.accessToken;
         fetch(`http://localhost:5000/api/v1/user/user/${searchText}`, {
             method: "GET",
@@ -211,7 +211,7 @@ const RequestTransfer = ({ users }) => {
             .then((data) => {
                 setDataSource([data.data])
 
-                console.log(data.data)
+                //console.log(data.data)
             });
     };
     return (

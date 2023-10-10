@@ -93,14 +93,14 @@ const config = {
     ],
 };
 const IssueRevinueItem = ({ capitalItem, itemType, categroys, subcategroys, brands, models, suppliers, notAssignRevenueItem, users, zonals }) => {
-    console.log(notAssignRevenueItem, capitalItem);
-    // console.log(users);
+    //console.log(notAssignRevenueItem, capitalItem);
+    ////console.log(users);
     const { data: session } = useSession();
     const [filteredCategory, setFilteredCategory] = useState([]);
     const [filteredSubCategory, setFilteredSubCategory] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [filteredModel, setModel] = useState([]);
-    console.log(filteredCategory, filteredSubCategory)
+    //console.log(filteredCategory, filteredSubCategory)
     const handleCategory = (key) => {
         const newData = categroys?.filter((item) => item.itemTypeId == key);
         setFilteredCategory(newData);
@@ -298,7 +298,7 @@ const IssueRevinueItem = ({ capitalItem, itemType, categroys, subcategroys, bran
     };
     const [api, contextHolder] = notification.useNotification();
     const onFinish = (values) => {
-        console.log(values)
+        //console.log(values)
         const { assignToMobileNo, identificationNo, zonalCode } = values;
         const accessToken = session?.accessToken?.accessToken;
         fetch(`http://localhost:5000/api/v1/revenue-item/assign-revenue-item/${values?.id}`, {

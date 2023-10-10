@@ -83,7 +83,7 @@ const EditableCell = ({
     return <td {...restProps}>{childNode}</td>;
 };
 const ManageServicing = ({ servicing }) => {
-    console.log(servicing);
+    //console.log(servicing);
     const { data: session } = useSession();
     const [dataSource, setDataSource] = useState(servicing);
     const [count, setCount] = useState(2);
@@ -222,7 +222,7 @@ const ManageServicing = ({ servicing }) => {
     };
     const [api, contextHolder] = notification.useNotification();
     const onFinish = (values) => {
-        console.log(values)
+        //console.log(values)
         const pbsCode = session?.pbs_code?.pbs_code;
         const withvalues = { ...values, pbsCode };
         //console.log(withvalues);

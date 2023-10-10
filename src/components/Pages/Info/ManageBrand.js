@@ -205,7 +205,7 @@ const ManageBrand = ({ brands }) => {
   };
   const [api, contextHolder] = notification.useNotification();
   const onFinish = (values) => {
-    console.log(values)
+    //console.log(values)
   };
   return (
     <div>

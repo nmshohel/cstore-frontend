@@ -59,7 +59,7 @@ const AddCategory = ({ itemType, categroys }) => {
                     });
                 };
                 openNotificationWithIcon('success');
-                console.log(data.data);
+                //console.log(data.data);
                 categroys.push(data.data);
             });
     };

@@ -36,7 +36,7 @@ const formItemLayout = {
   },
 };
 
-const AddModel = ({ brands }) => {
+const AddModel = ({ brands, models }) => {
   const [api, contextHolder] = notification.useNotification();
   const { data: session } = useSession();
   const onFinish = (values) => {

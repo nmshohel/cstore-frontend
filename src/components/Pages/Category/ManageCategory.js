@@ -81,7 +81,7 @@ const EditableCell = ({
   return <td {...restProps}>{childNode}</td>;
 };
 const ManageCategory = ({ categroys, itemType }) => {
-  console.log(categroys);
+  //console.log(categroys);
   const [dataSource, setDataSource] = useState(categroys);
 
   const handleDelete = (key) => {
@@ -197,7 +197,7 @@ const ManageCategory = ({ categroys, itemType }) => {
   };
   const [api, contextHolder] = notification.useNotification();
   const onFinish = (values) => {
-    console.log(values)
+    //console.log(values)
   };
   return (
     <div>

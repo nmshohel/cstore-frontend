@@ -83,7 +83,7 @@ const EditableCell = ({
   return <td {...restProps}>{childNode}</td>;
 };
 const ManageSupplier = ({ suppliers }) => {
-  console.log(suppliers);
+  //console.log(suppliers);
   const { data: session } = useSession();
   const [dataSource, setDataSource] = useState(suppliers);
   const [count, setCount] = useState(2);
@@ -210,7 +210,7 @@ const ManageSupplier = ({ suppliers }) => {
   };
   const [api, contextHolder] = notification.useNotification();
   const onFinish = (values) => {
-    console.log(values)
+    //console.log(values)
     const pbsCode = session?.pbs_code?.pbs_code;
     const withvalues = { ...values, pbsCode };
     //console.log(withvalues);

@@ -46,7 +46,7 @@ const config = {
 };
 
 const AddCapitalItem = ({ capitalItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
-    console.log(itemType)
+    //console.log(itemType)
     // cole.log(models)
     const [filteredCategory, setFilteredCategory] = useState([]);
     const [filteredSubCategory, setFilteredSubCategory] = useState([]);
@@ -73,7 +73,7 @@ const AddCapitalItem = ({ capitalItem, itemType, categroys, subcategroys, brands
         const pbsCode = session?.pbs_code?.pbs_code;
         const addByMobileNo = session?.mobileNo?.mobileNo;
         const withvalues = { ...values, pbsCode, addByMobileNo };
-        console.log(withvalues)
+        //console.log(withvalues)
         const accessToken = session?.accessToken?.accessToken;
         fetch(`http://localhost:5000/api/v1/capital-item/create-capital-item`, {
             method: "POST",

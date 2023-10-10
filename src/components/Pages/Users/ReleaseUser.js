@@ -83,7 +83,7 @@ const EditableCell = ({
     return <td {...restProps}>{childNode}</td>;
 };
 const ReleaseUser = ({ requestedUser }) => {
-    console.log(requestedUser);
+    //console.log(requestedUser);
     const [api, contextHolder] = notification.useNotification();
     const [dataSource, setDataSource] = useState(requestedUser);
     const [count, setCount] = useState(2);

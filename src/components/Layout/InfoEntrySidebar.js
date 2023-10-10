@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import {
   DesktopOutlined,
   FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
+  ApartmentOutlined,
+  MediumOutlined,
+  BranchesOutlined,
   UserOutlined,
-  AppstoreAddOutlined
+  IssuesCloseOutlined,
+  StockOutlined,
+  CustomerServiceOutlined,
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
@@ -27,31 +30,31 @@ const InfoEntrySidebar = ({ children, category, setFormId }) => {
   }
   const items = [
 
-    getItem('Revinue Item', 'sub1', <UserOutlined />, [
+    getItem('Revinue Item', 'sub1', <StockOutlined />, [
       getItem('Add', '1'),
       getItem('Manage', '2'),
     ]),
-    getItem('Capital Item', 'sub2', <UserOutlined />, [
+    getItem('Capital Item', 'sub2', <StockOutlined />, [
       getItem('Add', '3'),
       getItem('Manage', '4'),
     ]),
-    getItem('Product Issue', 'sub3', <UserOutlined />, [
+    getItem('Product Issue', 'sub3', <IssuesCloseOutlined />, [
       getItem('Capital Item', '5'),
       getItem('Revinue Item', '6'),
     ]),
-    getItem('Brand', 'sub4', <UserOutlined />, [
+    getItem('Brand', 'sub4', <BranchesOutlined />, [
       getItem('Add Brand', '7'),
       getItem('Manage Brand', '8'),
     ]),
-    getItem('Model', 'sub5', <UserOutlined />, [
+    getItem('Model', 'sub5', <MediumOutlined />, [
       getItem('Add Model', '9'),
       getItem('Manage Model', '10'),
     ]),
-    getItem('Supplier', 'sub6', <UserOutlined />, [
+    getItem('Supplier', 'sub6', <ApartmentOutlined />, [
       getItem('Add Supplier', '11'),
       getItem('Manage Supplier', '12'),
     ]),
-    getItem('Servicing', 'sub7', <UserOutlined />, [
+    getItem('Servicing', 'sub7', <CustomerServiceOutlined />, [
       getItem('Add Servicing', '13'),
       getItem('Manage Servicing', '14'),
     ]),
