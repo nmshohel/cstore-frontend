@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Button, Form, Input, Modal, Popconfirm, Select, Table } from 'antd';
+const { Option } = Select;
 const EditableContext = React.createContext(null);
 import { Typography } from 'antd';
 import { notification } from "antd";

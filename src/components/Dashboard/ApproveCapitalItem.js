@@ -1,6 +1,6 @@
 
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Button, Modal, Form, Input, Popconfirm, Table, DatePicker, Select } from 'antd';
+import { Form, Input, Popconfirm, Table, } from 'antd';
 import { notification } from "antd";
 import moment from 'moment';
 const EditableContext = React.createContext(null);
@@ -92,7 +92,7 @@ const config = {
         },
     ],
 };
-const ApproveCapitalItem = ({ notApproveCapitalItem, itemType, categroys, subcategroys, brands, models, suppliers }) => {
+const ApproveCapitalItem = ({ notApproveCapitalItem, categroys, subcategroys, brands, models, suppliers }) => {
     //console.log(notApproveCapitalItem);
     const { data: session } = useSession();
     const [filteredCategory, setFilteredCategory] = useState([]);

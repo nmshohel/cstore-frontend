@@ -1,8 +1,8 @@
 
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Button, Modal, Form, Input, Popconfirm, Table, DatePicker, Select } from 'antd';
+const { Option } = Select;
 import { notification } from "antd";
-import moment from 'moment';
 const EditableContext = React.createContext(null);
 import { Typography } from 'antd';
 import { useSession } from 'next-auth/react';
